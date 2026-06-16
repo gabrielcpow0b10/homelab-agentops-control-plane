@@ -9,9 +9,13 @@ node_modules/
 dist/
 build/
 coverage/
+__pycache__/
+*.pyc
 private/
 local/
 inventory/
+inventory/*.local.json
+inventory/*.private.json
 runtime/
 secrets/
 screenshots/

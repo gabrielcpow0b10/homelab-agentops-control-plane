@@ -1,0 +1,15 @@
+[
+  {
+    "id": "example-local-dashboard-service",
+    "name": "Example Local Dashboard Service",
+    "type": "dashboard",
+    "status": "planned",
+    "ownerDeviceId": "example-ai-node",
+    "localUrlHint": "http://example-dashboard.local.invalid",
+    "portHint": "8080",
+    "notes": "Fake local service template entry.",
+    "securityNotes": "Do not store passwords, tokens, keys, or real endpoint details.",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z"
+  }
+]

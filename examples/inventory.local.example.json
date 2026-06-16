@@ -1,0 +1,50 @@
+[
+  {
+    "id": "example-ai-node",
+    "name": "Example AI Node",
+    "type": "ai_node",
+    "role": "Local compute planning target",
+    "status": "planned",
+    "location": "Example Lab Area",
+    "hostHint": "example-ai-node.local.invalid",
+    "ipHint": "192.0.2.10",
+    "accessMethod": "local-management-ui",
+    "notes": "Fake local inventory template entry.",
+    "securityNotes": "Do not store passwords, tokens, keys, or real access details.",
+    "runbook": "example-ai-node-maintenance",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "example-nas",
+    "name": "Example NAS",
+    "type": "nas",
+    "role": "Local storage planning target",
+    "status": "unknown",
+    "location": "Example Storage Area",
+    "hostHint": "example-nas.local.invalid",
+    "ipHint": "192.0.2.20",
+    "accessMethod": "local-management-ui",
+    "notes": "Fake storage inventory template entry.",
+    "securityNotes": "Keep real share names, credentials, and private paths out of tracked files.",
+    "runbook": "example-storage-review",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "example-router",
+    "name": "Example Router",
+    "type": "router",
+    "role": "Local network boundary planning target",
+    "status": "unknown",
+    "location": "Example Network Area",
+    "hostHint": "example-router.local.invalid",
+    "ipHint": "198.51.100.10",
+    "accessMethod": "local-management-ui",
+    "notes": "Fake boundary device inventory template entry.",
+    "securityNotes": "Do not commit real routes, addresses, credentials, or access details.",
+    "runbook": "example-boundary-review",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z"
+  }
+]

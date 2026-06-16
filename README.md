@@ -13,6 +13,14 @@ This repository is separate from `halo-local-ai-console` because it is not a use
 - Security boundaries and documentation rules.
 - Local validation scripts for syntax checks and conservative secret-pattern scanning.
 
+## v0.2-local Scope
+
+- Ignored local inventory runtime under `inventory/`.
+- Sanitized local inventory templates in `examples/`.
+- `scripts/init-local-inventory.sh` for creating local inventory files without overwriting existing files.
+- `scripts/validate-inventory.py` for standard-library validation of local device and service JSON.
+- Doctor integration for inventory validation, script syntax checks, security scanning, and repository status review.
+
 ## Intentionally Not Included
 
 - Real device inventory.
@@ -28,6 +36,20 @@ This repository is separate from `halo-local-ai-console` because it is not a use
 ## Local-First Design
 
 The control plane should be useful without depending on external services. Public repository files should contain only documentation, schemas, scripts, and fake examples. Real inventory belongs in ignored local directories such as `private/`, `local/`, `inventory/`, `runtime/`, or `secrets/`.
+
+To initialize ignored local inventory files, run:
+
+```bash
+bash scripts/init-local-inventory.sh
+```
+
+To validate local inventory at any time, run:
+
+```bash
+python3 scripts/validate-inventory.py
+```
+
+See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md` for the local runtime rules and limitations.
 
 ## No Secrets Policy
 
