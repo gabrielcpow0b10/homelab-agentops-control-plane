@@ -1,0 +1,50 @@
+[
+  {
+    "id": "example-ai-node",
+    "name": "Example AI Node",
+    "type": "ai_node",
+    "role": "Local model workload planning target",
+    "status": "planned",
+    "location": "Example Lab Area",
+    "hostHint": "sanitized-ai-node-host",
+    "ipHint": "sanitized-local-address",
+    "accessMethod": "local-admin-console",
+    "notes": "Fake example device for schema validation and planning.",
+    "securityNotes": "Do not store real access details in committed files.",
+    "runbook": "example-ai-node-maintenance",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "example-nas",
+    "name": "Example NAS",
+    "type": "nas",
+    "role": "Local storage planning target",
+    "status": "unknown",
+    "location": "Example Storage Area",
+    "hostHint": "sanitized-nas-host",
+    "ipHint": "sanitized-local-address",
+    "accessMethod": "local-management-ui",
+    "notes": "Fake example storage device.",
+    "securityNotes": "Keep real share names and access details in ignored local files.",
+    "runbook": "example-storage-review",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "example-router",
+    "name": "Example Router",
+    "type": "router",
+    "role": "Local network boundary planning target",
+    "status": "unknown",
+    "location": "Example Network Area",
+    "hostHint": "sanitized-router-host",
+    "ipHint": "sanitized-local-address",
+    "accessMethod": "local-management-ui",
+    "notes": "Fake example boundary device.",
+    "securityNotes": "Do not commit real routes, addresses, or credentials.",
+    "runbook": "example-boundary-review",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z"
+  }
+]

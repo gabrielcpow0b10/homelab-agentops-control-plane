@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/service.schema.json",
+  "title": "HomeLab Service",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "type",
+    "status",
+    "ownerDeviceId",
+    "localUrlHint",
+    "portHint",
+    "notes",
+    "securityNotes",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "online",
+        "offline",
+        "unknown",
+        "planned",
+        "maintenance"
+      ]
+    },
+    "ownerDeviceId": {
+      "type": "string"
+    },
+    "localUrlHint": {
+      "type": "string"
+    },
+    "portHint": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "securityNotes": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

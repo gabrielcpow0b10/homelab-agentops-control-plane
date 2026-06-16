@@ -1,0 +1,38 @@
+[
+  {
+    "id": "example-ai-node-maintenance",
+    "title": "Example AI Node Maintenance",
+    "scope": "Fake device maintenance planning",
+    "steps": [
+      "Review planned maintenance window.",
+      "Confirm no sensitive details are being recorded in public files.",
+      "Record sanitized outcome notes."
+    ],
+    "rollback": "Use local-only procedures for real recovery details.",
+    "securityNotes": "Keep real commands, addresses, and credentials out of committed runbooks."
+  },
+  {
+    "id": "example-storage-review",
+    "title": "Example NAS Review",
+    "scope": "Fake storage review planning",
+    "steps": [
+      "Review example storage status.",
+      "Confirm backup notes are sanitized.",
+      "Record generic follow-up tasks."
+    ],
+    "rollback": "Use ignored local files for real recovery steps.",
+    "securityNotes": "Do not commit real share names or access details."
+  },
+  {
+    "id": "example-boundary-review",
+    "title": "Example Router Review",
+    "scope": "Fake boundary review planning",
+    "steps": [
+      "Review example boundary status.",
+      "Confirm address and route details are sanitized.",
+      "Record generic follow-up tasks."
+    ],
+    "rollback": "Use ignored local files for real recovery steps.",
+    "securityNotes": "Do not commit real route, firewall, or credential data."
+  }
+]

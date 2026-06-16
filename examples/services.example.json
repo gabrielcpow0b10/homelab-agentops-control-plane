@@ -1,0 +1,15 @@
+[
+  {
+    "id": "example-local-service",
+    "name": "Example Local Service",
+    "type": "local_app",
+    "status": "planned",
+    "ownerDeviceId": "example-ai-node",
+    "localUrlHint": "http://example-local-service.invalid",
+    "portHint": "example-port",
+    "notes": "Fake example service for planning.",
+    "securityNotes": "Do not commit real endpoints or credentials.",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z"
+  }
+]

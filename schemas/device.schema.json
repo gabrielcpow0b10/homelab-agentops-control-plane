@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/device.schema.json",
+  "title": "HomeLab Device",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "type",
+    "role",
+    "status",
+    "location",
+    "hostHint",
+    "ipHint",
+    "accessMethod",
+    "notes",
+    "securityNotes",
+    "runbook",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "ai_node",
+        "server",
+        "raspberry_pi",
+        "nas",
+        "router",
+        "storage",
+        "service",
+        "workstation",
+        "other"
+      ]
+    },
+    "role": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "online",
+        "offline",
+        "unknown",
+        "planned",
+        "maintenance"
+      ]
+    },
+    "location": {
+      "type": "string"
+    },
+    "hostHint": {
+      "type": "string"
+    },
+    "ipHint": {
+      "type": "string"
+    },
+    "accessMethod": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "securityNotes": {
+      "type": "string"
+    },
+    "runbook": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
