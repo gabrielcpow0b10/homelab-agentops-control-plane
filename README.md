@@ -21,6 +21,14 @@ This repository is separate from `halo-local-ai-console` because it is not a use
 - `scripts/validate-inventory.py` for standard-library validation of local device and service JSON.
 - Doctor integration for inventory validation, script syntax checks, security scanning, and repository status review.
 
+## v0.3-local Scope
+
+- Safe local inventory summary generation.
+- Redacted count-based reporting from ignored local inventory files.
+- Optional ignored runtime report at `runtime/inventory-summary.local.md`.
+- `scripts/report-inventory.sh` for validating inventory and writing the safe local report.
+- Doctor integration for summary script syntax and no-write summary checks.
+
 ## Intentionally Not Included
 
 - Real device inventory.
@@ -49,7 +57,19 @@ To validate local inventory at any time, run:
 python3 scripts/validate-inventory.py
 ```
 
-See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md` for the local runtime rules and limitations.
+To print a safe inventory summary without writing a report, run:
+
+```bash
+python3 scripts/summarize-inventory.py
+```
+
+To validate inventory and write the ignored local report, run:
+
+```bash
+bash scripts/report-inventory.sh
+```
+
+See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md` and `docs/V0_3_SAFE_INVENTORY_SUMMARY.md` for the local runtime rules, reporting rules, and limitations.
 
 ## No Secrets Policy
 

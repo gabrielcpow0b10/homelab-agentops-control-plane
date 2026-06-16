@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0-local - Safe Inventory Summary Report
+
+- Added a redacted local inventory summary script.
+- Added an ignored runtime report helper for safe local review.
+- Added doctor checks for summary script syntax and no-write summary execution.
+- Added v0.3-local documentation for safe report contents, exclusions, limitations, and future console integration.
+
 ## 0.2.0-local - Local Inventory Runtime
 
 - Added ignored local inventory runtime guidance.

@@ -10,12 +10,17 @@ echo "doctor: bash syntax"
 bash -n scripts/security-scan.sh
 bash -n scripts/doctor.sh
 bash -n scripts/init-local-inventory.sh
+bash -n scripts/report-inventory.sh
 
 echo "doctor: python syntax"
 python3 -m py_compile scripts/validate-inventory.py
+python3 -m py_compile scripts/summarize-inventory.py
 
 echo "doctor: local inventory validation"
 python3 scripts/validate-inventory.py
+
+echo "doctor: safe inventory summary"
+python3 scripts/summarize-inventory.py
 
 echo "doctor: security scan"
 bash scripts/security-scan.sh
