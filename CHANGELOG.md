@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-local - Read-only Agent Simulator
+
+- Added a safe read-only Agent Simulator that runs command contract, policy, approval, and capability checks without execution.
+- Added redacted simulation result schema and sanitized example result.
+- Added `scripts/simulate-readonly-agent.py` with safe defaults, optional approval decisions, optional ignored runtime JSON and Markdown outputs, and pure Python tracked-file guards.
+- Added `scripts/check-readonly-agent-simulator.sh` and integrated no-write simulator validation into doctor.
+- Added v1.0-local documentation for safety model, full pipeline behavior, recorded fields, omitted fields, runtime outputs, limitations, and the v1.1 Agent Dry-Run Plan Renderer idea.
+
 ## 0.9.0-local - Agent Capability Registry
 
 - Added a public-safe Agent Capability Registry schema and sanitized example registry.

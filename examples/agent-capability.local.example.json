@@ -20,8 +20,7 @@
       "maxRiskLevel": "medium",
       "requiresApprovalForActions": [],
       "deniedActions": [
-        "backup_run",
-        "restart_service"
+        "backup_run"
       ],
       "safetyFlags": {
         "noShellExecution": true,

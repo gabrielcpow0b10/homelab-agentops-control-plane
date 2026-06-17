@@ -29,6 +29,7 @@ See `docs/PUBLIC_SAFETY_BOUNDARY.md` for the full public safety boundary.
 - Agent Audit Log: redacted audit events with hashes and classifications only.
 - Agent Approval Ledger: redacted approval decisions for future gated execution workflows.
 - Agent Capability Registry: generic future agent class capabilities with no real deployment details.
+- Read-only Agent Simulator: end-to-end local decision simulation without execution, network contact, or agent contact.
 
 ## Portfolio Value
 
@@ -40,6 +41,7 @@ This project demonstrates:
 - Redacted audit logging.
 - Redacted approval decision records.
 - Public-safe capability registry validation.
+- End-to-end read-only agent simulation.
 - Bash and Python standard-library tooling.
 - Security scanning and doctor checks for public-safe repository hygiene.
 
@@ -116,6 +118,15 @@ This project demonstrates:
 - Validation that checks supported action, mode, risk level, denied actions, and approval-required capability flags.
 - Optional ignored runtime report at `runtime/agent-capability-summary.local.md`.
 - Doctor integration for capability registry syntax and no-write validation.
+
+## v1.0-local Scope
+
+- First end-to-end read-only simulator milestone.
+- Safe local simulation of command contract, policy, approval, and capability decisions.
+- Final simulated decisions: `SIMULATED_READY`, `SIMULATED_BLOCKED`, and `SIMULATED_REQUIRES_APPROVAL`.
+- Redacted result JSON with fingerprints, classifications, counts, and safety booleans only.
+- Optional ignored runtime outputs at `runtime/agent-simulation-result.local.json` and `runtime/agent-simulation-summary.local.md`.
+- Doctor integration for simulator syntax and no-write default simulation.
 
 ## Intentionally Not Included
 
@@ -233,7 +244,38 @@ To validate the safe capability flow and write the ignored capability summary, r
 bash scripts/check-agent-capability.sh
 ```
 
-See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, and `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, and limitations.
+To run the end-to-end read-only agent simulator without writing runtime files, run:
+
+```bash
+python3 scripts/simulate-readonly-agent.py
+```
+
+To run the simulator with explicit safe examples, run:
+
+```bash
+python3 scripts/simulate-readonly-agent.py \
+  examples/agent-capability.local.example.json \
+  examples/agent-policy.local.example.json \
+  examples/agent-command.health-check.example.json
+```
+
+To simulate an approval-required command with an approved decision, run:
+
+```bash
+python3 scripts/simulate-readonly-agent.py \
+  examples/agent-capability.local.example.json \
+  examples/agent-policy.local.example.json \
+  examples/agent-command.restart-service.requires-approval.example.json \
+  --approval-decision approved
+```
+
+To validate the safe simulator flow and write ignored runtime simulation outputs, run:
+
+```bash
+bash scripts/check-readonly-agent-simulator.sh
+```
+
+See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md`, and `docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, read-only simulation behavior, and limitations.
 
 ## No Secrets Policy
 
@@ -285,4 +327,15 @@ The capability script never executes commands, contacts agents, or calls network
 ```bash
 python3 scripts/validate-agent-capability.py
 bash scripts/check-agent-capability.sh
+```
+
+## v1.0-local Read-only Agent Simulator
+
+v1.0-local adds the first end-to-end read-only simulator milestone. It validates the command contract, evaluates policy, checks approval requirements, checks capabilities, and produces a redacted final simulated decision.
+
+The simulator never executes commands, contacts agents, or calls network services. Default mode does not write runtime files.
+
+```bash
+python3 scripts/simulate-readonly-agent.py
+bash scripts/check-readonly-agent-simulator.sh
 ```

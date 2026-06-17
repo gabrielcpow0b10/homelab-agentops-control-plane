@@ -1,0 +1,222 @@
+{
+  "$id": "agent-simulation-result.schema.json",
+  "title": "HomeLab Read-only Agent Simulation Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "resultType",
+    "simulationId",
+    "createdAt",
+    "commandFingerprint",
+    "policyFingerprint",
+    "capabilityFingerprint",
+    "commandContractResult",
+    "policyEvaluationResult",
+    "capabilityRegistryResult",
+    "approvalRequired",
+    "approvalDecision",
+    "finalSimulationResult",
+    "simulatedActionClass",
+    "simulatedRiskLevel",
+    "matchedCapabilityCount",
+    "validationErrorCount",
+    "sensitiveInputBlocked",
+    "executionAttempted",
+    "networkContacted",
+    "agentContacted",
+    "filesystemMutationAttempted",
+    "commandExecuted",
+    "redaction"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "resultType": {
+      "const": "read_only_agent_simulation"
+    },
+    "simulationId": {
+      "type": "string",
+      "pattern": "^sim_[a-f0-9]{16}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "commandFingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$"
+    },
+    "policyFingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$"
+    },
+    "capabilityFingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$"
+    },
+    "commandContractResult": {
+      "enum": [
+        "pass",
+        "fail"
+      ]
+    },
+    "policyEvaluationResult": {
+      "enum": [
+        "ALLOW",
+        "ALLOW_WITH_APPROVAL",
+        "DENY",
+        "UNKNOWN"
+      ]
+    },
+    "capabilityRegistryResult": {
+      "enum": [
+        "PASS",
+        "WARN",
+        "FAIL",
+        "UNKNOWN"
+      ]
+    },
+    "approvalRequired": {
+      "type": "boolean"
+    },
+    "approvalDecision": {
+      "enum": [
+        "approved",
+        "denied",
+        "expired",
+        "none"
+      ]
+    },
+    "finalSimulationResult": {
+      "enum": [
+        "SIMULATED_READY",
+        "SIMULATED_BLOCKED",
+        "SIMULATED_REQUIRES_APPROVAL"
+      ]
+    },
+    "simulatedActionClass": {
+      "enum": [
+        "read_only",
+        "dry_run",
+        "approved_write",
+        "unknown"
+      ]
+    },
+    "simulatedRiskLevel": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ]
+    },
+    "matchedCapabilityCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "validationErrorCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sensitiveInputBlocked": {
+      "type": "boolean"
+    },
+    "executionAttempted": {
+      "const": false
+    },
+    "networkContacted": {
+      "const": false
+    },
+    "agentContacted": {
+      "const": false
+    },
+    "filesystemMutationAttempted": {
+      "const": false
+    },
+    "commandExecuted": {
+      "const": false
+    },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rawRequestIdsOmitted",
+        "rawDeviceIdsOmitted",
+        "rawServiceIdsOmitted",
+        "rawPolicyIdsOmitted",
+        "rawOperatorNamesOmitted",
+        "rawEmailsOmitted",
+        "rawReasonsOmitted",
+        "rawParametersOmitted",
+        "rawPathsOmitted",
+        "rawHostsOmitted",
+        "rawIpsOmitted",
+        "rawUrlsOmitted",
+        "rawTokensOmitted",
+        "rawSecretsOmitted",
+        "rawCommandJsonOmitted",
+        "rawPolicyJsonOmitted",
+        "rawCapabilityJsonOmitted",
+        "rawAgentIdentifiersOmitted"
+      ],
+      "properties": {
+        "rawRequestIdsOmitted": {
+          "const": true
+        },
+        "rawDeviceIdsOmitted": {
+          "const": true
+        },
+        "rawServiceIdsOmitted": {
+          "const": true
+        },
+        "rawPolicyIdsOmitted": {
+          "const": true
+        },
+        "rawOperatorNamesOmitted": {
+          "const": true
+        },
+        "rawEmailsOmitted": {
+          "const": true
+        },
+        "rawReasonsOmitted": {
+          "const": true
+        },
+        "rawParametersOmitted": {
+          "const": true
+        },
+        "rawPathsOmitted": {
+          "const": true
+        },
+        "rawHostsOmitted": {
+          "const": true
+        },
+        "rawIpsOmitted": {
+          "const": true
+        },
+        "rawUrlsOmitted": {
+          "const": true
+        },
+        "rawTokensOmitted": {
+          "const": true
+        },
+        "rawSecretsOmitted": {
+          "const": true
+        },
+        "rawCommandJsonOmitted": {
+          "const": true
+        },
+        "rawPolicyJsonOmitted": {
+          "const": true
+        },
+        "rawCapabilityJsonOmitted": {
+          "const": true
+        },
+        "rawAgentIdentifiersOmitted": {
+          "const": true
+        }
+      }
+    }
+  }
+}
