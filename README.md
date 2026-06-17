@@ -119,3 +119,14 @@ Do not commit secrets or sensitive operational data. Public examples must be fak
 ## Future Console Integration
 
 Future versions may expose the sanitized schemas and local data layout to HALO Console as a read-only source of inventory, services, and runbook metadata. That integration should preserve the boundary between this repository as the private control-plane foundation and the console as a separate application experience.
+
+## v0.6-local Agent Policy Engine
+
+v0.6-local adds a safe local Agent Policy Engine. It evaluates validated Agent Command Contract requests against local default-deny policy rules before any future agent execution layer exists.
+
+The engine never executes commands, contacts agents, or calls network services. Normal output is redacted and count-based.
+
+```bash
+python3 scripts/evaluate-agent-policy.py
+bash scripts/check-agent-policy.sh
+```

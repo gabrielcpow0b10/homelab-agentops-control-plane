@@ -40,3 +40,10 @@
 - Added device and service JSON schemas.
 - Added conservative local validation scripts.
 - Added security boundaries and repository ignore rules.
+
+## 0.6.0-local
+
+- Added a local Agent Policy Engine for default-deny policy evaluation of validated Agent Command Contract requests.
+- Added the agent policy schema, safe local example policy, redacted evaluator, local check script, and v0.6 documentation.
+- Integrated policy evaluation into the local doctor flow.
+- Kept the milestone policy-only: no command execution, agent contact, network contact, release, push, or dependency changes.

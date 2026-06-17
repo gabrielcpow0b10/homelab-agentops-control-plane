@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "0.6",
+  "policyId": "profile_standard",
+  "defaultDecision": "deny",
+  "devices": [
+    {
+      "deviceId": "device_alpha",
+      "allowedActions": [
+        "health_check",
+        "disk_status",
+        "memory_status",
+        "temperature_check",
+        "service_status",
+        "backup_dry_run",
+        "restart_allowed_service",
+        "backup_run"
+      ],
+      "allowedServices": [
+        "service_alpha"
+      ],
+      "capabilities": [
+        "profile_standard",
+        "health_check",
+        "disk_status",
+        "memory_status",
+        "temperature_check",
+        "service_status",
+        "backup_dry_run",
+        "restart_allowed_service",
+        "backup_run"
+      ],
+      "approvalRequiredActions": [
+        "restart_allowed_service",
+        "backup_run"
+      ],
+      "deniedActions": [
+        "shell_command",
+        "read_env",
+        "delete_files",
+        "install_package",
+        "curl_pipe_shell"
+      ],
+      "maxRiskLevel": "high",
+      "enabled": true
+    }
+  ]
+}

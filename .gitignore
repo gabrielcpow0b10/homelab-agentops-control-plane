@@ -30,3 +30,8 @@ id_ed25519
 *.png
 *.jpg
 *.jpeg
+
+# Local agent policy and runtime reports
+policies/*.local.json
+policies/*.private.json
+runtime/agent-policy-evaluation.local.md

@@ -1,0 +1,96 @@
+{
+  "$id": "agent-policy.schema.json",
+  "title": "Halo Agent Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "policyId",
+    "defaultDecision",
+    "devices"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "0.6"
+    },
+    "policyId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]{2,63}$"
+    },
+    "defaultDecision": {
+      "const": "deny"
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "deviceId",
+          "allowedActions",
+          "capabilities",
+          "approvalRequiredActions",
+          "deniedActions",
+          "maxRiskLevel",
+          "enabled"
+        ],
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_\\-]{2,63}$"
+          },
+          "allowedActions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_\\-]{2,63}$"
+            },
+            "uniqueItems": true
+          },
+          "allowedServices": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_\\-]{2,63}$"
+            },
+            "uniqueItems": true
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_\\-]{2,63}$"
+            },
+            "uniqueItems": true
+          },
+          "approvalRequiredActions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_\\-]{2,63}$"
+            },
+            "uniqueItems": true
+          },
+          "deniedActions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_\\-]{2,63}$"
+            },
+            "uniqueItems": true
+          },
+          "maxRiskLevel": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}
