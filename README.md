@@ -29,6 +29,14 @@ This repository is separate from `halo-local-ai-console` because it is not a use
 - `scripts/report-inventory.sh` for validating inventory and writing the safe local report.
 - Doctor integration for summary script syntax and no-write summary checks.
 
+## v0.4-local Scope
+
+- Safe local inventory quality gate with PASS, WARN, and FAIL results.
+- Redacted quality checks for duplicate IDs, missing service owners, unknown statuses, and missing device runbooks.
+- Optional ignored runtime report at `runtime/inventory-quality.local.md`.
+- `scripts/check-inventory-quality.sh` for validation plus ignored quality report generation.
+- Doctor integration for quality gate syntax and no-write quality checks.
+
 ## Intentionally Not Included
 
 - Real device inventory.
@@ -69,7 +77,19 @@ To validate inventory and write the ignored local report, run:
 bash scripts/report-inventory.sh
 ```
 
-See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md` and `docs/V0_3_SAFE_INVENTORY_SUMMARY.md` for the local runtime rules, reporting rules, and limitations.
+To run the safe inventory quality gate without writing a report, run:
+
+```bash
+python3 scripts/check-inventory-quality.py
+```
+
+To validate inventory and write the ignored quality report, run:
+
+```bash
+bash scripts/check-inventory-quality.sh
+```
+
+See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, and `docs/V0_4_INVENTORY_QUALITY_GATE.md` for the local runtime rules, reporting rules, quality gate behavior, and limitations.
 
 ## No Secrets Policy
 

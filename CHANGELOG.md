@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0-local - Inventory Quality Gate
+
+- Added a redacted local inventory quality gate with PASS, WARN, and FAIL results.
+- Added duplicate ID, missing owner reference, unknown status, and missing device runbook checks.
+- Added an ignored runtime quality report helper.
+- Added doctor checks for quality gate shell syntax, Python compilation, and no-write quality execution.
+- Added v0.4-local documentation for safety boundaries, commands, limitations, and the v0.5 Agent Command Contract idea.
+
 ## 0.3.0-local - Safe Inventory Summary Report
 
 - Added a redacted local inventory summary script.

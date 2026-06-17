@@ -21,8 +21,13 @@ build_patterns() {
   printf '%s%s\n' "." "ssh"
 }
 
-tmp_files="$(mktemp)"
-tmp_patterns="$(mktemp)"
+scan_tmpdir="${TMPDIR:-/tmp}"
+if [ ! -d "$scan_tmpdir" ]; then
+  scan_tmpdir="/tmp"
+fi
+
+tmp_files="$(mktemp "$scan_tmpdir/halo-scan-files.XXXXXX")"
+tmp_patterns="$(mktemp "$scan_tmpdir/halo-scan-patterns.XXXXXX")"
 trap 'rm -f "$tmp_files" "$tmp_patterns"' EXIT
 
 {
