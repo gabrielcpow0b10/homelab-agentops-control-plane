@@ -18,6 +18,7 @@ bash -n scripts/check-agent-command.sh
 bash -n scripts/check-agent-policy.sh
 bash -n scripts/check-agent-audit.sh
 bash -n scripts/check-agent-approval.sh
+bash -n scripts/check-agent-capability.sh
 
 echo "doctor: python syntax"
 python3 -m py_compile scripts/validate-inventory.py
@@ -27,6 +28,7 @@ python3 -m py_compile scripts/validate-agent-command.py
 python3 -m py_compile scripts/evaluate-agent-policy.py
 python3 -m py_compile scripts/record-agent-audit.py
 python3 -m py_compile scripts/record-agent-approval.py
+python3 -m py_compile scripts/validate-agent-capability.py
 
 echo "doctor: local inventory validation"
 python3 scripts/validate-inventory.py
@@ -48,6 +50,9 @@ python3 scripts/record-agent-audit.py
 
 echo "doctor: agent approval ledger"
 python3 scripts/record-agent-approval.py
+
+echo "doctor: agent capability registry"
+python3 scripts/validate-agent-capability.py
 
 echo "doctor: security scan"
 bash scripts/security-scan.sh

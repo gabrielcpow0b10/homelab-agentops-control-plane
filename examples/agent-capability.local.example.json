@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "0.9",
+  "registryType": "agent_capability_registry",
+  "generatedFor": "public_sanitized_prototype",
+  "agentClasses": [
+    {
+      "agentClassId": "raspberry_pi_worker",
+      "displayName": "Raspberry Pi Worker",
+      "enabled": true,
+      "agentRuntimeClass": "raspberry_pi",
+      "supportedActions": [
+        "health_check",
+        "service_status",
+        "backup_dry_run"
+      ],
+      "supportedModes": [
+        "read_only",
+        "dry_run"
+      ],
+      "maxRiskLevel": "medium",
+      "requiresApprovalForActions": [],
+      "deniedActions": [
+        "backup_run",
+        "restart_service"
+      ],
+      "safetyFlags": {
+        "noShellExecution": true,
+        "noArbitraryFileRead": true,
+        "noSecretRead": true,
+        "noNetworkScan": true,
+        "noRawHostOutput": true,
+        "noRawIpOutput": true,
+        "publicSafeExample": true
+      },
+      "notesClass": "public_example"
+    },
+    {
+      "agentClassId": "mac_mini_orchestrator",
+      "displayName": "Mac Mini Orchestrator",
+      "enabled": true,
+      "agentRuntimeClass": "mac_mini",
+      "supportedActions": [
+        "health_check",
+        "service_status",
+        "backup_dry_run",
+        "backup_run",
+        "restart_service"
+      ],
+      "supportedModes": [
+        "read_only",
+        "dry_run",
+        "approved_write"
+      ],
+      "maxRiskLevel": "high",
+      "requiresApprovalForActions": [
+        "backup_run",
+        "restart_service"
+      ],
+      "deniedActions": [],
+      "safetyFlags": {
+        "noShellExecution": true,
+        "noArbitraryFileRead": true,
+        "noSecretRead": true,
+        "noNetworkScan": true,
+        "noRawHostOutput": true,
+        "noRawIpOutput": true,
+        "publicSafeExample": true
+      },
+      "notesClass": "planned"
+    },
+    {
+      "agentClassId": "linux_backup_worker",
+      "displayName": "Linux Backup Worker",
+      "enabled": false,
+      "agentRuntimeClass": "linux_server",
+      "supportedActions": [
+        "health_check",
+        "backup_dry_run",
+        "backup_run"
+      ],
+      "supportedModes": [
+        "read_only",
+        "dry_run",
+        "approved_write"
+      ],
+      "maxRiskLevel": "high",
+      "requiresApprovalForActions": [
+        "backup_run"
+      ],
+      "deniedActions": [
+        "restart_service"
+      ],
+      "safetyFlags": {
+        "noShellExecution": true,
+        "noArbitraryFileRead": true,
+        "noSecretRead": true,
+        "noNetworkScan": true,
+        "noRawHostOutput": true,
+        "noRawIpOutput": true,
+        "publicSafeExample": true
+      },
+      "notesClass": "planned"
+    }
+  ]
+}

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0-local - Agent Capability Registry
+
+- Added a public-safe Agent Capability Registry schema and sanitized example registry.
+- Added `scripts/validate-agent-capability.py` for local capability validation against optional command requests.
+- Added optional ignored runtime output for safe capability summaries.
+- Added `scripts/check-agent-capability.sh` and integrated no-write capability validation into doctor.
+- Added v0.9-local documentation for safety model, recorded fields, omitted fields, PASS/WARN/FAIL behavior, commands, limitations, and the v1.0 Read-only Agent Simulator idea.
+
 ## 0.8.0-local - Agent Approval Ledger
 
 - Added a safe redacted Agent Approval Ledger event schema and sanitized example event.

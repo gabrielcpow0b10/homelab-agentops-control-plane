@@ -1,0 +1,182 @@
+{
+  "title": "HomeLab Agent Capability Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "registryType",
+    "generatedFor",
+    "agentClasses"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.9"
+    },
+    "registryType": {
+      "type": "string",
+      "const": "agent_capability_registry"
+    },
+    "generatedFor": {
+      "type": "string",
+      "const": "public_sanitized_prototype"
+    },
+    "agentClasses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "agentClassId",
+          "displayName",
+          "enabled",
+          "agentRuntimeClass",
+          "supportedActions",
+          "supportedModes",
+          "maxRiskLevel",
+          "requiresApprovalForActions",
+          "deniedActions",
+          "safetyFlags",
+          "notesClass"
+        ],
+        "properties": {
+          "agentClassId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{2,63}$"
+          },
+          "displayName": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9 _-]{1,79}$"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "agentRuntimeClass": {
+            "type": "string",
+            "enum": [
+              "raspberry_pi",
+              "mac_mini",
+              "linux_server",
+              "container",
+              "other"
+            ]
+          },
+          "supportedActions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "health_check",
+                "service_status",
+                "backup_dry_run",
+                "backup_run",
+                "restart_service"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "supportedModes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "read_only",
+                "dry_run",
+                "approved_write"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "maxRiskLevel": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "requiresApprovalForActions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "health_check",
+                "service_status",
+                "backup_dry_run",
+                "backup_run",
+                "restart_service"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "deniedActions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "health_check",
+                "service_status",
+                "backup_dry_run",
+                "backup_run",
+                "restart_service"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "safetyFlags": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "noShellExecution",
+              "noArbitraryFileRead",
+              "noSecretRead",
+              "noNetworkScan",
+              "noRawHostOutput",
+              "noRawIpOutput",
+              "publicSafeExample"
+            ],
+            "properties": {
+              "noShellExecution": {
+                "type": "boolean",
+                "const": true
+              },
+              "noArbitraryFileRead": {
+                "type": "boolean",
+                "const": true
+              },
+              "noSecretRead": {
+                "type": "boolean",
+                "const": true
+              },
+              "noNetworkScan": {
+                "type": "boolean",
+                "const": true
+              },
+              "noRawHostOutput": {
+                "type": "boolean",
+                "const": true
+              },
+              "noRawIpOutput": {
+                "type": "boolean",
+                "const": true
+              },
+              "publicSafeExample": {
+                "type": "boolean",
+                "const": true
+              }
+            }
+          },
+          "notesClass": {
+            "type": "string",
+            "enum": [
+              "public_example",
+              "planned",
+              "other"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

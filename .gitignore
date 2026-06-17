@@ -18,6 +18,8 @@ inventory/*.local.json
 inventory/*.private.json
 commands/*.local.json
 commands/*.private.json
+capabilities/*.local.json
+capabilities/*.private.json
 runtime/
 secrets/
 screenshots/
@@ -39,6 +41,7 @@ runtime/agent-audit.local.jsonl
 runtime/agent-audit-summary.local.md
 runtime/agent-approval-ledger.local.jsonl
 runtime/agent-approval-summary.local.md
+runtime/agent-capability-summary.local.md
 audit/*.local.jsonl
 audit/*.private.jsonl
 approvals/*.local.jsonl

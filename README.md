@@ -28,6 +28,7 @@ See `docs/PUBLIC_SAFETY_BOUNDARY.md` for the full public safety boundary.
 - Agent Policy Engine: default-deny policy evaluation before any execution layer.
 - Agent Audit Log: redacted audit events with hashes and classifications only.
 - Agent Approval Ledger: redacted approval decisions for future gated execution workflows.
+- Agent Capability Registry: generic future agent class capabilities with no real deployment details.
 
 ## Portfolio Value
 
@@ -38,6 +39,7 @@ This project demonstrates:
 - Default-deny policy evaluation.
 - Redacted audit logging.
 - Redacted approval decision records.
+- Public-safe capability registry validation.
 - Bash and Python standard-library tooling.
 - Security scanning and doctor checks for public-safe repository hygiene.
 
@@ -106,6 +108,14 @@ This project demonstrates:
 - Runtime approval JSONL and Markdown summary output only when explicitly requested.
 - Ignored runtime approval files under `runtime/`.
 - Doctor integration for approval script syntax and no-write approval generation.
+
+## v0.9-local Scope
+
+- Safe local Agent Capability Registry for generic future agent classes.
+- Public-safe capability examples for Raspberry Pi, Mac mini, and Linux worker classes.
+- Validation that checks supported action, mode, risk level, denied actions, and approval-required capability flags.
+- Optional ignored runtime report at `runtime/agent-capability-summary.local.md`.
+- Doctor integration for capability registry syntax and no-write validation.
 
 ## Intentionally Not Included
 
@@ -211,7 +221,19 @@ To validate the safe approval flow and write ignored approval runtime files, run
 bash scripts/check-agent-approval.sh
 ```
 
-See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, and `docs/V0_8_AGENT_APPROVAL_LEDGER.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, and limitations.
+To validate the safe capability registry without writing a report, run:
+
+```bash
+python3 scripts/validate-agent-capability.py
+```
+
+To validate the safe capability flow and write the ignored capability summary, run:
+
+```bash
+bash scripts/check-agent-capability.sh
+```
+
+See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, and `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, and limitations.
 
 ## No Secrets Policy
 
@@ -252,4 +274,15 @@ The approval script never executes commands, contacts agents, or calls network s
 ```bash
 python3 scripts/record-agent-approval.py
 bash scripts/check-agent-approval.sh
+```
+
+## v0.9-local Agent Capability Registry
+
+v0.9-local adds a safe local Agent Capability Registry. It validates generic future agent classes and checks whether a validated command action has a matching enabled capability.
+
+The capability script never executes commands, contacts agents, or calls network services. Default mode does not write runtime files.
+
+```bash
+python3 scripts/validate-agent-capability.py
+bash scripts/check-agent-capability.sh
 ```
