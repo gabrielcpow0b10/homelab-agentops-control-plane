@@ -1,6 +1,6 @@
 # Security Policy
 
-This repository is designed to remain safe as a private foundation for HomeLab documentation and metadata.
+This repository is designed to remain safe as a public sanitized prototype for HomeLab-style documentation and metadata.
 
 ## Rules
 
@@ -13,7 +13,7 @@ This repository is designed to remain safe as a private foundation for HomeLab d
 
 ## Local Data
 
-Use ignored directories such as `private/`, `local/`, `inventory/`, `runtime/`, and `secrets/` for real local records. These locations are intentionally excluded from version control by `.gitignore`.
+In a private operational deployment, ignored directories such as `private/`, `local/`, `inventory/`, `runtime/`, and `secrets/` may hold real local records. These locations are intentionally excluded from version control by `.gitignore` and must not be populated with real data in the public portfolio snapshot.
 
 ## Review Before Sharing
 

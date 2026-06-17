@@ -50,7 +50,7 @@
 
 ## 0.1.0 - Initial Bootstrap
 
-- Added private control-plane documentation foundation.
+- Added public-safe control-plane documentation foundation.
 - Added sanitized device, service, and runbook examples.
 - Added device and service JSON schemas.
 - Added conservative local validation scripts.

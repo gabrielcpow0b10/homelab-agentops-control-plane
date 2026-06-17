@@ -1,8 +1,43 @@
 # HomeLab Control Plane
 
-HomeLab Control Plane is a private, local-first foundation for documenting and organizing a personal lab environment. It is intended to hold sanitized inventory models, service metadata, runbook references, and security boundary notes that can later be consumed by other local tools.
+HomeLab Control Plane is a public, sanitized prototype for documenting and organizing a HomeLab-style control plane. It demonstrates local-first inventory modeling, safe summaries, quality gates, agent command validation, default-deny policy evaluation, and redacted audit logging without exposing operational HomeLab data.
 
 This repository is separate from `halo-local-ai-console` because it is not a user interface. The console can evolve as an application layer, while this repository stays focused on durable control-plane data structures, examples, documentation, and safety checks.
+
+This public repository is not the private operational HomeLab deployment. It contains fake examples, schemas, scripts, and documentation only.
+
+## Public Safety Boundary
+
+This repository is designed to be public-safe:
+
+- No real inventory is included.
+- No real policies are included.
+- No runtime logs are included.
+- No real device names, hosts, IPs, private paths, URLs, tokens, or secrets are included.
+- Examples are fake, generic, and safe for portfolio review.
+- Ignored local runtime directories are documented only as patterns for a private deployment.
+
+See `docs/PUBLIC_SAFETY_BOUNDARY.md` for the full public safety boundary.
+
+## Technical Architecture
+
+- Inventory: sanitized device and service examples with JSON schemas.
+- Safe Summary: redacted, count-based inventory reporting.
+- Inventory Quality Gate: PASS, WARN, and FAIL checks for inventory hygiene.
+- Agent Command Contract: allowlisted command request validation for future agents.
+- Agent Policy Engine: default-deny policy evaluation before any execution layer.
+- Agent Audit Log: redacted audit events with hashes and classifications only.
+
+## Portfolio Value
+
+This project demonstrates:
+
+- Local-first architecture for HomeLab control-plane data.
+- Safe AI-to-agent command validation.
+- Default-deny policy evaluation.
+- Redacted audit logging.
+- Bash and Python standard-library tooling.
+- Security scanning and doctor checks for public-safe repository hygiene.
 
 ## v0.1 Scope
 
@@ -66,6 +101,10 @@ This repository is separate from `halo-local-ai-console` because it is not a use
 - Real device inventory.
 - Real network addresses.
 - Real hostnames.
+- Real policies.
+- Runtime logs.
+- Real device names.
+- Real hosts, IPs, private paths, or URLs.
 - Passwords, tokens, keys, private keys, or `.env` content.
 - Screenshots, uploaded documents, logs, PDFs, or private files.
 - Cloud provider configuration.
@@ -75,7 +114,7 @@ This repository is separate from `halo-local-ai-console` because it is not a use
 
 ## Local-First Design
 
-The control plane should be useful without depending on external services. Public repository files should contain only documentation, schemas, scripts, and fake examples. Real inventory belongs in ignored local directories such as `private/`, `local/`, `inventory/`, `runtime/`, or `secrets/`.
+The prototype should be useful without depending on external services. Public repository files should contain only documentation, schemas, scripts, and fake examples. In a private operational deployment, real inventory would belong in ignored local directories such as `private/`, `local/`, `inventory/`, `runtime/`, or `secrets/`.
 
 To initialize ignored local inventory files, run:
 
@@ -149,15 +188,15 @@ To validate the safe audit flow and write ignored audit runtime files, run:
 bash scripts/check-agent-audit.sh
 ```
 
-See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, and `docs/V0_7_AGENT_AUDIT_LOG.md` for the local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, and limitations.
+See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, and `docs/V0_7_AGENT_AUDIT_LOG.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, and limitations.
 
 ## No Secrets Policy
 
-Do not commit secrets or sensitive operational data. Public examples must be fake or sanitized. Treat this repository as shareable by default, even if it remains private.
+Do not commit secrets or sensitive operational data. Public examples must be fake and sanitized. Treat this repository as shareable by default.
 
 ## Future Console Integration
 
-Future versions may expose the sanitized schemas and local data layout to HALO Console as a read-only source of inventory, services, and runbook metadata. That integration should preserve the boundary between this repository as the private control-plane foundation and the console as a separate application experience.
+Future versions may expose the sanitized schemas and local data layout to HALO Console as a read-only source of fake inventory, services, and runbook metadata. A private operational deployment would keep any real data outside this public repository.
 
 ## v0.6-local Agent Policy Engine
 
