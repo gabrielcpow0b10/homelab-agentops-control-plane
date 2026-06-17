@@ -1,6 +1,6 @@
 # HomeLab Control Plane
 
-HomeLab Control Plane is a public, sanitized prototype for documenting and organizing a HomeLab-style control plane. It demonstrates local-first inventory modeling, safe summaries, quality gates, agent command validation, default-deny policy evaluation, and redacted audit logging without exposing operational HomeLab data.
+HomeLab Control Plane is a public, sanitized prototype for documenting and organizing a HomeLab-style control plane. It demonstrates local-first inventory modeling, safe summaries, quality gates, agent command validation, default-deny policy evaluation, redacted audit logging, and redacted approval ledger records without exposing operational HomeLab data.
 
 This repository is separate from `halo-local-ai-console` because it is not a user interface. The console can evolve as an application layer, while this repository stays focused on durable control-plane data structures, examples, documentation, and safety checks.
 
@@ -27,6 +27,7 @@ See `docs/PUBLIC_SAFETY_BOUNDARY.md` for the full public safety boundary.
 - Agent Command Contract: allowlisted command request validation for future agents.
 - Agent Policy Engine: default-deny policy evaluation before any execution layer.
 - Agent Audit Log: redacted audit events with hashes and classifications only.
+- Agent Approval Ledger: redacted approval decisions for future gated execution workflows.
 
 ## Portfolio Value
 
@@ -36,6 +37,7 @@ This project demonstrates:
 - Safe AI-to-agent command validation.
 - Default-deny policy evaluation.
 - Redacted audit logging.
+- Redacted approval decision records.
 - Bash and Python standard-library tooling.
 - Security scanning and doctor checks for public-safe repository hygiene.
 
@@ -95,6 +97,15 @@ This project demonstrates:
 - Runtime audit JSONL and Markdown summary output only when explicitly requested.
 - Ignored runtime audit files under `runtime/`.
 - Doctor integration for audit script syntax and no-write audit generation.
+
+## v0.8-local Scope
+
+- Safe local Agent Approval Ledger for redacted human/operator approval decisions.
+- Approval decisions for `approved`, `denied`, and `expired` outcomes.
+- Authorization rules that keep denied policy results, denied approvals, and expired approvals from authorizing execution.
+- Runtime approval JSONL and Markdown summary output only when explicitly requested.
+- Ignored runtime approval files under `runtime/`.
+- Doctor integration for approval script syntax and no-write approval generation.
 
 ## Intentionally Not Included
 
@@ -188,7 +199,19 @@ To validate the safe audit flow and write ignored audit runtime files, run:
 bash scripts/check-agent-audit.sh
 ```
 
-See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, and `docs/V0_7_AGENT_AUDIT_LOG.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, and limitations.
+To generate a safe redacted agent approval event without writing runtime files, run:
+
+```bash
+python3 scripts/record-agent-approval.py
+```
+
+To validate the safe approval flow and write ignored approval runtime files, run:
+
+```bash
+bash scripts/check-agent-approval.sh
+```
+
+See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, and `docs/V0_8_AGENT_APPROVAL_LEDGER.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, and limitations.
 
 ## No Secrets Policy
 
@@ -218,4 +241,15 @@ The audit script never executes commands, contacts agents, or calls network serv
 ```bash
 python3 scripts/record-agent-audit.py
 bash scripts/check-agent-audit.sh
+```
+
+## v0.8-local Agent Approval Ledger
+
+v0.8-local adds a safe local Agent Approval Ledger. It records a redacted approval decision after command validation and policy evaluation, using hashes and classifications only.
+
+The approval script never executes commands, contacts agents, or calls network services. Default mode does not write runtime files.
+
+```bash
+python3 scripts/record-agent-approval.py
+bash scripts/check-agent-approval.sh
 ```

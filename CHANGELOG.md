@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0-local - Agent Approval Ledger
+
+- Added a safe redacted Agent Approval Ledger event schema and sanitized example event.
+- Added `scripts/record-agent-approval.py` to generate approval decision events from local policy evaluation without executing commands.
+- Added optional ignored runtime output for JSONL approval events and safe Markdown summaries.
+- Added `scripts/check-agent-approval.sh` and integrated no-write approval generation into doctor.
+- Added v0.8-local documentation for recorded fields, omitted fields, authorization rules, hash limitations, commands, and the v0.9 Agent Capability Registry idea.
+
 ## 0.7.0-local - Agent Audit Log
 
 - Added a safe redacted Agent Audit Log event schema and sanitized example event.

@@ -37,5 +37,9 @@ policies/*.private.json
 runtime/agent-policy-evaluation.local.md
 runtime/agent-audit.local.jsonl
 runtime/agent-audit-summary.local.md
+runtime/agent-approval-ledger.local.jsonl
+runtime/agent-approval-summary.local.md
 audit/*.local.jsonl
 audit/*.private.jsonl
+approvals/*.local.jsonl
+approvals/*.private.jsonl
