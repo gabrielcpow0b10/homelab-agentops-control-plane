@@ -30,6 +30,7 @@ See `docs/PUBLIC_SAFETY_BOUNDARY.md` for the full public safety boundary.
 - Agent Approval Ledger: redacted approval decisions for future gated execution workflows.
 - Agent Capability Registry: generic future agent class capabilities with no real deployment details.
 - Read-only Agent Simulator: end-to-end local decision simulation without execution, network contact, or agent contact.
+- Agent Dry-Run Plan Renderer: human-readable operational plans from read-only simulation results without execution.
 
 ## Portfolio Value
 
@@ -42,6 +43,7 @@ This project demonstrates:
 - Redacted approval decision records.
 - Public-safe capability registry validation.
 - End-to-end read-only agent simulation.
+- Redacted dry-run operational plan rendering.
 - Bash and Python standard-library tooling.
 - Security scanning and doctor checks for public-safe repository hygiene.
 
@@ -127,6 +129,14 @@ This project demonstrates:
 - Redacted result JSON with fingerprints, classifications, counts, and safety booleans only.
 - Optional ignored runtime outputs at `runtime/agent-simulation-result.local.json` and `runtime/agent-simulation-summary.local.md`.
 - Doctor integration for simulator syntax and no-write default simulation.
+
+## v1.1-local Scope
+
+- Safe local Agent Dry-Run Plan Renderer built on the v1.0 read-only simulator.
+- Human-readable plan steps for command validation, policy evaluation, approval check, capability match, simulation decision, and dry-run result.
+- Redacted plan JSON with fingerprints, classifications, counts, step statuses, and safety booleans only.
+- Optional ignored runtime outputs at `runtime/agent-dry-run-plan.local.json` and `runtime/agent-dry-run-plan-summary.local.md`.
+- Doctor integration for renderer syntax and no-write default rendering.
 
 ## Intentionally Not Included
 
@@ -275,7 +285,38 @@ To validate the safe simulator flow and write ignored runtime simulation outputs
 bash scripts/check-readonly-agent-simulator.sh
 ```
 
-See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md`, and `docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, read-only simulation behavior, and limitations.
+To render a safe dry-run operational plan without writing runtime files, run:
+
+```bash
+python3 scripts/render-dry-run-plan.py
+```
+
+To render a dry-run plan with explicit safe examples, run:
+
+```bash
+python3 scripts/render-dry-run-plan.py \
+  examples/agent-capability.local.example.json \
+  examples/agent-policy.local.example.json \
+  examples/agent-command.health-check.example.json
+```
+
+To render an approval-required dry-run plan with an approved decision, run:
+
+```bash
+python3 scripts/render-dry-run-plan.py \
+  examples/agent-capability.local.example.json \
+  examples/agent-policy.local.example.json \
+  examples/agent-command.restart-service.requires-approval.example.json \
+  --approval-decision approved
+```
+
+To validate the dry-run plan renderer and write ignored runtime dry-run outputs, run:
+
+```bash
+bash scripts/check-dry-run-plan.sh
+```
+
+See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md`, `docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md`, and `docs/V1_1_AGENT_DRY_RUN_PLAN_RENDERER.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, read-only simulation behavior, dry-run plan rendering behavior, and limitations.
 
 ## No Secrets Policy
 
@@ -338,4 +379,16 @@ The simulator never executes commands, contacts agents, or calls network service
 ```bash
 python3 scripts/simulate-readonly-agent.py
 bash scripts/check-readonly-agent-simulator.sh
+```
+
+## v1.1-local Agent Dry-Run Plan Renderer
+
+v1.1-local builds on v1.0 by turning the simulation decision into a human-readable dry-run plan. It shows what would happen in safe, generic steps without executing commands, contacting agents, contacting network services, or storing raw operational data.
+
+Default mode does not write runtime files. Explicit write flags create ignored local dry-run outputs only.
+
+```bash
+python3 scripts/render-dry-run-plan.py
+python3 scripts/render-dry-run-plan.py --write-runtime-plan --write-runtime-summary
+bash scripts/check-dry-run-plan.sh
 ```

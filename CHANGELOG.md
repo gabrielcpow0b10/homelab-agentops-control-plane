@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0-local - Agent Dry-Run Plan Renderer
+
+- Added a safe Agent Dry-Run Plan Renderer that turns the v1.0 read-only simulation decision into a human-readable operational plan.
+- Added redacted dry-run plan schema and sanitized example plan with generic step objects, classifications, counts, and safety booleans only.
+- Added `scripts/render-dry-run-plan.py` with safe defaults, optional approval decisions, optional ignored runtime JSON and Markdown outputs, and no subprocess usage.
+- Added `scripts/check-dry-run-plan.sh` and integrated no-write dry-run rendering into doctor.
+- Added v1.1-local documentation for safety model, rendered fields, omitted fields, runtime outputs, commands, limitations, and the v1.2 Public Agent Runbook Preview idea.
+
 ## 1.0.0-local - Read-only Agent Simulator
 
 - Added a safe read-only Agent Simulator that runs command contract, policy, approval, and capability checks without execution.

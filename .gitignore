@@ -44,9 +44,13 @@ runtime/agent-approval-summary.local.md
 runtime/agent-capability-summary.local.md
 runtime/agent-simulation-result.local.json
 runtime/agent-simulation-summary.local.md
+runtime/agent-dry-run-plan.local.json
+runtime/agent-dry-run-plan-summary.local.md
 audit/*.local.jsonl
 audit/*.private.jsonl
 approvals/*.local.jsonl
 approvals/*.private.jsonl
 simulations/*.local.json
 simulations/*.private.json
+dry-runs/*.local.json
+dry-runs/*.private.json

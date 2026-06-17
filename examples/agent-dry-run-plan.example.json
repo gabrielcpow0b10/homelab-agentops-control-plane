@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "1.1",
+  "resultType": "agent_dry_run_plan",
+  "planId": "plan_3f8b2a7c91d0e456",
+  "createdAt": "2026-06-16T00:00:00Z",
+  "simulationFingerprint": "6a7d8c91b2e3f405",
+  "finalSimulationResult": "SIMULATED_READY",
+  "planStatus": "PLAN_READY",
+  "planMode": "read_only",
+  "riskLevel": "low",
+  "approvalRequired": false,
+  "approvalDecision": "none",
+  "matchedCapabilityCount": 1,
+  "validationErrorCount": 0,
+  "sensitiveInputBlocked": false,
+  "steps": [
+    {
+      "stepNumber": 1,
+      "stepName": "Command Contract Validation",
+      "stepStatus": "READY",
+      "stepSummary": "The request shape was checked against the safe command contract.",
+      "safetyNote": "The raw command request was not stored in the plan."
+    },
+    {
+      "stepNumber": 2,
+      "stepName": "Policy Evaluation",
+      "stepStatus": "READY",
+      "stepSummary": "Default-deny policy evaluation produced a redacted decision classification.",
+      "safetyNote": "Policy content and policy identifiers were omitted."
+    },
+    {
+      "stepNumber": 3,
+      "stepName": "Approval Check",
+      "stepStatus": "INFO",
+      "stepSummary": "No human approval is required for this dry-run plan.",
+      "safetyNote": "Operator identity, reason text, and approval ledger details were omitted."
+    },
+    {
+      "stepNumber": 4,
+      "stepName": "Capability Match",
+      "stepStatus": "READY",
+      "stepSummary": "The capability registry was checked for a compatible generic agent class.",
+      "safetyNote": "Capability content and agent identifiers were omitted."
+    },
+    {
+      "stepNumber": 5,
+      "stepName": "Simulation Decision",
+      "stepStatus": "READY",
+      "stepSummary": "The read-only simulator produced a final decision without contacting agents.",
+      "safetyNote": "No command execution, network access, or agent contact was attempted."
+    },
+    {
+      "stepNumber": 6,
+      "stepName": "Dry-Run Result",
+      "stepStatus": "READY",
+      "stepSummary": "The final dry-run plan status was rendered for human review.",
+      "safetyNote": "The plan contains only hashes, classifications, counts, and safety flags."
+    }
+  ],
+  "safety": {
+    "executionAttempted": false,
+    "commandExecuted": false,
+    "networkContacted": false,
+    "agentContacted": false,
+    "filesystemMutationAttempted": false,
+    "rawSecretsStored": false,
+    "rawHostsStored": false,
+    "rawIpsStored": false,
+    "rawUrlsStored": false,
+    "rawPathsStored": false
+  },
+  "redaction": {
+    "rawRequestIdsStored": false,
+    "rawDeviceIdsStored": false,
+    "rawServiceIdsStored": false,
+    "rawPolicyIdsStored": false,
+    "rawOperatorNamesStored": false,
+    "rawEmailsStored": false,
+    "rawReasonsStored": false,
+    "rawParametersStored": false,
+    "rawHostsStored": false,
+    "rawIpsStored": false,
+    "rawUrlsStored": false,
+    "rawPathsStored": false,
+    "rawTokensStored": false,
+    "rawSecretsStored": false,
+    "rawCommandJsonStored": false,
+    "rawPolicyJsonStored": false,
+    "rawCapabilityJsonStored": false,
+    "rawAgentIdentifiersStored": false
+  }
+}
