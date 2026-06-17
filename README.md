@@ -46,6 +46,21 @@ This repository is separate from `halo-local-ai-console` because it is not a use
 - Optional ignored runtime report at `runtime/agent-command-contract.local.md`.
 - Doctor integration for command contract syntax and no-write validation.
 
+## v0.6-local Scope
+
+- Safe local Agent Policy Engine for default-deny policy evaluation.
+- Redacted policy reports that never execute commands or contact agents.
+- Optional ignored runtime report at `runtime/agent-policy-evaluation.local.md`.
+- Doctor integration for policy engine syntax and no-write evaluation.
+
+## v0.7-local Scope
+
+- Safe local Agent Audit Log for redacted policy evaluation events.
+- SHA-256 based short hashes for request, target, policy, command, and policy references.
+- Runtime audit JSONL and Markdown summary output only when explicitly requested.
+- Ignored runtime audit files under `runtime/`.
+- Doctor integration for audit script syntax and no-write audit generation.
+
 ## Intentionally Not Included
 
 - Real device inventory.
@@ -110,7 +125,31 @@ To validate the safe agent command examples and write the ignored command contra
 bash scripts/check-agent-command.sh
 ```
 
-See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, and `docs/V0_5_AGENT_COMMAND_CONTRACT.md` for the local runtime rules, reporting rules, quality gate behavior, command contract validation, and limitations.
+To evaluate the safe example command against the safe local policy without writing a report, run:
+
+```bash
+python3 scripts/evaluate-agent-policy.py
+```
+
+To validate the safe policy flow and write the ignored policy report, run:
+
+```bash
+bash scripts/check-agent-policy.sh
+```
+
+To generate a safe redacted agent audit event without writing runtime files, run:
+
+```bash
+python3 scripts/record-agent-audit.py
+```
+
+To validate the safe audit flow and write ignored audit runtime files, run:
+
+```bash
+bash scripts/check-agent-audit.sh
+```
+
+See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, and `docs/V0_7_AGENT_AUDIT_LOG.md` for the local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, and limitations.
 
 ## No Secrets Policy
 
@@ -129,4 +168,15 @@ The engine never executes commands, contacts agents, or calls network services. 
 ```bash
 python3 scripts/evaluate-agent-policy.py
 bash scripts/check-agent-policy.sh
+```
+
+## v0.7-local Agent Audit Log
+
+v0.7-local adds a safe local Agent Audit Log. It records one redacted policy evaluation event with hashes and classifications only.
+
+The audit script never executes commands, contacts agents, or calls network services. Default mode does not write runtime files.
+
+```bash
+python3 scripts/record-agent-audit.py
+bash scripts/check-agent-audit.sh
 ```

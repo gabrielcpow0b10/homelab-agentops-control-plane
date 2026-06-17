@@ -35,3 +35,7 @@ id_ed25519
 policies/*.local.json
 policies/*.private.json
 runtime/agent-policy-evaluation.local.md
+runtime/agent-audit.local.jsonl
+runtime/agent-audit-summary.local.md
+audit/*.local.jsonl
+audit/*.private.jsonl

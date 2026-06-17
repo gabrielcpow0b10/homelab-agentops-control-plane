@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "0.7",
+  "eventType": "agent_policy_evaluation",
+  "eventId": "audit_0123456789abcdef",
+  "createdAt": "2026-06-17T00:00:00Z",
+  "requestRefHash": "1111111111111111",
+  "targetDeviceRefHash": "2222222222222222",
+  "targetServiceRefHash": "none",
+  "policyRefHash": "3333333333333333",
+  "commandFingerprint": "4444444444444444",
+  "policyFingerprint": "5555555555555555",
+  "actionClass": "read_only",
+  "riskLevel": "low",
+  "contractValidationResult": "pass",
+  "policyEvaluationResult": "ALLOW",
+  "approvalRequired": false,
+  "executionAttempted": false,
+  "networkContacted": false,
+  "agentContacted": false,
+  "redaction": {
+    "rawIdsOmitted": true,
+    "rawReasonsOmitted": true,
+    "rawParametersOmitted": true,
+    "rawPathsOmitted": true,
+    "rawHostsOmitted": true,
+    "rawIpsOmitted": true,
+    "rawUrlsOmitted": true,
+    "rawTokensOmitted": true,
+    "rawSecretsOmitted": true,
+    "rawCommandJsonOmitted": true,
+    "rawPolicyJsonOmitted": true
+  }
+}

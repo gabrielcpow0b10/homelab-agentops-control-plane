@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.7.0-local - Agent Audit Log
+
+- Added a safe redacted Agent Audit Log event schema and sanitized example event.
+- Added `scripts/record-agent-audit.py` to generate audit events from local policy evaluation without executing commands.
+- Added optional ignored runtime output for JSONL audit events and safe Markdown summaries.
+- Added `scripts/check-agent-audit.sh` and integrated no-write audit generation into doctor.
+- Added v0.7-local documentation for recorded fields, omitted fields, hash limitations, commands, and the v0.8 Approval Ledger idea.
+
+## 0.6.0-local - Agent Policy Engine
+
+- Added a local Agent Policy Engine for default-deny policy evaluation of validated Agent Command Contract requests.
+- Added the agent policy schema, safe local example policy, redacted evaluator, local check script, and v0.6 documentation.
+- Integrated policy evaluation into the local doctor flow.
+- Kept the milestone policy-only: no command execution, agent contact, network contact, release, push, or dependency changes.
+
 ## 0.5.0-local - Agent Command Contract
 
 - Added a safe JSON Agent Command Contract schema for future HomeLab agent requests.
@@ -40,10 +55,3 @@
 - Added device and service JSON schemas.
 - Added conservative local validation scripts.
 - Added security boundaries and repository ignore rules.
-
-## 0.6.0-local
-
-- Added a local Agent Policy Engine for default-deny policy evaluation of validated Agent Command Contract requests.
-- Added the agent policy schema, safe local example policy, redacted evaluator, local check script, and v0.6 documentation.
-- Integrated policy evaluation into the local doctor flow.
-- Kept the milestone policy-only: no command execution, agent contact, network contact, release, push, or dependency changes.
