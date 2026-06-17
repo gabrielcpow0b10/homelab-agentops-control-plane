@@ -46,6 +46,8 @@ runtime/agent-simulation-result.local.json
 runtime/agent-simulation-summary.local.md
 runtime/agent-dry-run-plan.local.json
 runtime/agent-dry-run-plan-summary.local.md
+runtime/agent-runbook-preview.local.json
+runtime/agent-runbook-preview-summary.local.md
 audit/*.local.jsonl
 audit/*.private.jsonl
 approvals/*.local.jsonl
@@ -54,3 +56,5 @@ simulations/*.local.json
 simulations/*.private.json
 dry-runs/*.local.json
 dry-runs/*.private.json
+runbooks/*.local.json
+runbooks/*.private.json

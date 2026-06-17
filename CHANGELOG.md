@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0-local - Public Agent Runbook Preview
+
+- Added a safe Agent Runbook Preview renderer that turns the v1.1 dry-run plan into human-readable public-safe runbook sections.
+- Added redacted runbook preview schema and sanitized example preview with hashes, classifications, counts, section statuses, and safety booleans only.
+- Added `scripts/render-runbook-preview.py` with safe defaults, optional approval decisions, optional ignored runtime JSON and Markdown outputs, and no subprocess usage.
+- Added `scripts/check-runbook-preview.sh` and integrated no-write runbook preview rendering into doctor.
+- Added v1.2-local documentation for safety model, full pipeline behavior, rendered fields, omitted fields, runtime outputs, commands, limitations, and the v1.3 Public Agent Handoff Packet idea.
+
 ## 1.1.0-local - Agent Dry-Run Plan Renderer
 
 - Added a safe Agent Dry-Run Plan Renderer that turns the v1.0 read-only simulation decision into a human-readable operational plan.

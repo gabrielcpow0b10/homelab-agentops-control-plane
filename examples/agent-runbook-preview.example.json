@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "1.2",
+  "resultType": "agent_runbook_preview",
+  "previewId": "runbook_5a6b7c8d9e0f1234",
+  "createdAt": "2026-06-17T00:00:00Z",
+  "dryRunPlanFingerprint": "4b8f2a6d1c9e3057",
+  "finalSimulationResult": "SIMULATED_READY",
+  "planStatus": "PLAN_READY",
+  "runbookStatus": "RUNBOOK_PREVIEW_READY",
+  "runbookMode": "read_only",
+  "riskLevel": "low",
+  "approvalRequired": false,
+  "approvalDecision": "none",
+  "matchedCapabilityCount": 1,
+  "validationErrorCount": 0,
+  "sensitiveInputBlocked": false,
+  "sections": [
+    {
+      "sectionNumber": 1,
+      "sectionName": "Reviewer Review",
+      "sectionStatus": "READY",
+      "sectionSummary": "The reviewer receives a redacted summary of the proposed agent workflow.",
+      "reviewerNote": "Review classifications, approval state, and safety boundaries before any future handoff.",
+      "safetyNote": "No reason text, request identifier, or target identifier is stored."
+    },
+    {
+      "sectionNumber": 2,
+      "sectionName": "Command Safety",
+      "sectionStatus": "READY",
+      "sectionSummary": "The command contract result is represented only as a safe plan classification.",
+      "reviewerNote": "Unsafe requests stay blocked before a runbook preview can be considered ready.",
+      "safetyNote": "Raw command JSON, parameters, paths, URLs, hosts, IPs, tokens, and secrets are omitted."
+    },
+    {
+      "sectionNumber": 3,
+      "sectionName": "Policy Decision",
+      "sectionStatus": "READY",
+      "sectionSummary": "The default-deny policy outcome is summarized as ready, blocked, or approval-gated.",
+      "reviewerNote": "Policy denial prevents a ready runbook preview.",
+      "safetyNote": "Raw policy content, policy identifiers, and private policy rationale are omitted."
+    },
+    {
+      "sectionNumber": 4,
+      "sectionName": "Approval State",
+      "sectionStatus": "INFO",
+      "sectionSummary": "The dry-run plan does not require a human approval decision.",
+      "reviewerNote": "Approval is represented as a local dry-run classification only.",
+      "safetyNote": "Approval ledger content, reason text, and request details are omitted."
+    },
+    {
+      "sectionNumber": 5,
+      "sectionName": "Capability Match",
+      "sectionStatus": "READY",
+      "sectionSummary": "The capability registry result is reduced to a matched capability count and readiness state.",
+      "reviewerNote": "A missing or incompatible capability keeps the preview blocked.",
+      "safetyNote": "Raw capability content and agent identifiers are omitted."
+    },
+    {
+      "sectionNumber": 6,
+      "sectionName": "Dry-Run Plan",
+      "sectionStatus": "READY",
+      "sectionSummary": "The existing dry-run plan is referenced by a short fingerprint for public-safe correlation.",
+      "reviewerNote": "Only the dry-run plan status and fingerprint are carried into this preview.",
+      "safetyNote": "Dry-run steps are not expanded with raw command, policy, capability, or target details."
+    },
+    {
+      "sectionNumber": 7,
+      "sectionName": "Execution Boundary",
+      "sectionStatus": "INFO",
+      "sectionSummary": "This preview is a review artifact only and never crosses into execution.",
+      "reviewerNote": "Keep execution, network contact, and agent contact outside this public milestone.",
+      "safetyNote": "Safety flags confirm that no command, network service, agent, or mutable filesystem target was contacted."
+    },
+    {
+      "sectionNumber": 8,
+      "sectionName": "Final Runbook Preview",
+      "sectionStatus": "READY",
+      "sectionSummary": "The runbook preview is ready for human review in this public-safe model.",
+      "reviewerNote": "Use the final status to decide whether a future private handoff could proceed.",
+      "safetyNote": "The preview contains only hashes, classifications, counts, section statuses, and safety confirmations."
+    }
+  ],
+  "safety": {
+    "executionAttempted": false,
+    "commandExecuted": false,
+    "networkContacted": false,
+    "agentContacted": false,
+    "filesystemMutationAttempted": false,
+    "rawSecretsStored": false,
+    "rawHostsStored": false,
+    "rawIpsStored": false,
+    "rawUrlsStored": false,
+    "rawPathsStored": false
+  },
+  "redaction": {
+    "rawRequestIdsStored": false,
+    "rawDeviceIdsStored": false,
+    "rawServiceIdsStored": false,
+    "rawPolicyIdsStored": false,
+    "rawReviewerNamesStored": false,
+    "rawEmailsStored": false,
+    "rawReasonsStored": false,
+    "rawParametersStored": false,
+    "rawHostsStored": false,
+    "rawIpsStored": false,
+    "rawUrlsStored": false,
+    "rawPathsStored": false,
+    "rawTokensStored": false,
+    "rawSecretsStored": false,
+    "rawCommandJsonStored": false,
+    "rawPolicyJsonStored": false,
+    "rawCapabilityJsonStored": false,
+    "rawAgentIdentifiersStored": false
+  }
+}

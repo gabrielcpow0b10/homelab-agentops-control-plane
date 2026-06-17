@@ -31,6 +31,7 @@ See `docs/PUBLIC_SAFETY_BOUNDARY.md` for the full public safety boundary.
 - Agent Capability Registry: generic future agent class capabilities with no real deployment details.
 - Read-only Agent Simulator: end-to-end local decision simulation without execution, network contact, or agent contact.
 - Agent Dry-Run Plan Renderer: human-readable operational plans from read-only simulation results without execution.
+- Agent Runbook Preview: public-safe operational runbook previews from dry-run plans without execution.
 
 ## Portfolio Value
 
@@ -44,6 +45,7 @@ This project demonstrates:
 - Public-safe capability registry validation.
 - End-to-end read-only agent simulation.
 - Redacted dry-run operational plan rendering.
+- Public-safe agent runbook preview rendering.
 - Bash and Python standard-library tooling.
 - Security scanning and doctor checks for public-safe repository hygiene.
 
@@ -137,6 +139,14 @@ This project demonstrates:
 - Redacted plan JSON with fingerprints, classifications, counts, step statuses, and safety booleans only.
 - Optional ignored runtime outputs at `runtime/agent-dry-run-plan.local.json` and `runtime/agent-dry-run-plan-summary.local.md`.
 - Doctor integration for renderer syntax and no-write default rendering.
+
+## v1.2-local Scope
+
+- Safe local Agent Runbook Preview built on the v1.1 dry-run plan renderer.
+- Human-readable runbook sections for operator review, command safety, policy decision, approval state, capability match, dry-run plan, execution boundary, and final preview status.
+- Redacted preview JSON with dry-run plan fingerprint, classifications, counts, section statuses, and safety booleans only.
+- Optional ignored runtime outputs at `runtime/agent-runbook-preview.local.json` and `runtime/agent-runbook-preview-summary.local.md`.
+- Doctor integration for preview syntax and no-write default rendering.
 
 ## Intentionally Not Included
 
@@ -316,7 +326,38 @@ To validate the dry-run plan renderer and write ignored runtime dry-run outputs,
 bash scripts/check-dry-run-plan.sh
 ```
 
-See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md`, `docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md`, and `docs/V1_1_AGENT_DRY_RUN_PLAN_RENDERER.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, read-only simulation behavior, dry-run plan rendering behavior, and limitations.
+To render a safe public runbook preview without writing runtime files, run:
+
+```bash
+python3 scripts/render-runbook-preview.py
+```
+
+To render a runbook preview with explicit safe examples, run:
+
+```bash
+python3 scripts/render-runbook-preview.py \
+  examples/agent-capability.local.example.json \
+  examples/agent-policy.local.example.json \
+  examples/agent-command.health-check.example.json
+```
+
+To render an approval-required runbook preview with an approved decision, run:
+
+```bash
+python3 scripts/render-runbook-preview.py \
+  examples/agent-capability.local.example.json \
+  examples/agent-policy.local.example.json \
+  examples/agent-command.restart-service.requires-approval.example.json \
+  --approval-decision approved
+```
+
+To validate the runbook preview renderer and write ignored runtime preview outputs, run:
+
+```bash
+bash scripts/check-runbook-preview.sh
+```
+
+See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md`, `docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md`, `docs/V1_1_AGENT_DRY_RUN_PLAN_RENDERER.md`, and `docs/V1_2_AGENT_RUNBOOK_PREVIEW.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, read-only simulation behavior, dry-run plan rendering behavior, runbook preview behavior, and limitations.
 
 ## No Secrets Policy
 
@@ -391,4 +432,16 @@ Default mode does not write runtime files. Explicit write flags create ignored l
 python3 scripts/render-dry-run-plan.py
 python3 scripts/render-dry-run-plan.py --write-runtime-plan --write-runtime-summary
 bash scripts/check-dry-run-plan.sh
+```
+
+## v1.2-local Public Agent Runbook Preview
+
+v1.2-local builds on v1.1 by turning the dry-run plan into a readable public-safe runbook preview. It shows what the operator would review, what remains blocked, which safety checks must pass, and what is never executed.
+
+Default mode does not write runtime files. Explicit write flags create ignored local runbook preview outputs only.
+
+```bash
+python3 scripts/render-runbook-preview.py
+python3 scripts/render-runbook-preview.py --write-runtime-preview --write-runtime-summary
+bash scripts/check-runbook-preview.sh
 ```

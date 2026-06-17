@@ -1,0 +1,276 @@
+{
+  "$id": "agent-runbook-preview.schema.json",
+  "title": "HomeLab Agent Runbook Preview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "resultType",
+    "previewId",
+    "createdAt",
+    "dryRunPlanFingerprint",
+    "finalSimulationResult",
+    "planStatus",
+    "runbookStatus",
+    "runbookMode",
+    "riskLevel",
+    "approvalRequired",
+    "approvalDecision",
+    "matchedCapabilityCount",
+    "validationErrorCount",
+    "sensitiveInputBlocked",
+    "sections",
+    "safety",
+    "redaction"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.2"
+    },
+    "resultType": {
+      "const": "agent_runbook_preview"
+    },
+    "previewId": {
+      "type": "string",
+      "pattern": "^runbook_[a-f0-9]{16}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "dryRunPlanFingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{16}$"
+    },
+    "finalSimulationResult": {
+      "enum": [
+        "SIMULATED_READY",
+        "SIMULATED_BLOCKED",
+        "SIMULATED_REQUIRES_APPROVAL"
+      ]
+    },
+    "planStatus": {
+      "enum": [
+        "PLAN_READY",
+        "PLAN_BLOCKED",
+        "PLAN_REQUIRES_APPROVAL"
+      ]
+    },
+    "runbookStatus": {
+      "enum": [
+        "RUNBOOK_PREVIEW_READY",
+        "RUNBOOK_PREVIEW_BLOCKED",
+        "RUNBOOK_PREVIEW_REQUIRES_APPROVAL"
+      ]
+    },
+    "runbookMode": {
+      "enum": [
+        "read_only",
+        "dry_run",
+        "approved_write",
+        "unknown"
+      ]
+    },
+    "riskLevel": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "unknown"
+      ]
+    },
+    "approvalRequired": {
+      "type": "boolean"
+    },
+    "approvalDecision": {
+      "enum": [
+        "approved",
+        "denied",
+        "expired",
+        "none"
+      ]
+    },
+    "matchedCapabilityCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "validationErrorCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sensitiveInputBlocked": {
+      "type": "boolean"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sectionNumber",
+          "sectionName",
+          "sectionStatus",
+          "sectionSummary",
+          "reviewerNote",
+          "safetyNote"
+        ],
+        "properties": {
+          "sectionNumber": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sectionName": {
+            "type": "string"
+          },
+          "sectionStatus": {
+            "enum": [
+              "READY",
+              "BLOCKED",
+              "REQUIRES_APPROVAL",
+              "SKIPPED",
+              "INFO"
+            ]
+          },
+          "sectionSummary": {
+            "type": "string"
+          },
+          "reviewerNote": {
+            "type": "string"
+          },
+          "safetyNote": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "executionAttempted",
+        "commandExecuted",
+        "networkContacted",
+        "agentContacted",
+        "filesystemMutationAttempted",
+        "rawSecretsStored",
+        "rawHostsStored",
+        "rawIpsStored",
+        "rawUrlsStored",
+        "rawPathsStored"
+      ],
+      "properties": {
+        "executionAttempted": {
+          "const": false
+        },
+        "commandExecuted": {
+          "const": false
+        },
+        "networkContacted": {
+          "const": false
+        },
+        "agentContacted": {
+          "const": false
+        },
+        "filesystemMutationAttempted": {
+          "const": false
+        },
+        "rawSecretsStored": {
+          "const": false
+        },
+        "rawHostsStored": {
+          "const": false
+        },
+        "rawIpsStored": {
+          "const": false
+        },
+        "rawUrlsStored": {
+          "const": false
+        },
+        "rawPathsStored": {
+          "const": false
+        }
+      }
+    },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rawRequestIdsStored",
+        "rawDeviceIdsStored",
+        "rawServiceIdsStored",
+        "rawPolicyIdsStored",
+        "rawReviewerNamesStored",
+        "rawEmailsStored",
+        "rawReasonsStored",
+        "rawParametersStored",
+        "rawHostsStored",
+        "rawIpsStored",
+        "rawUrlsStored",
+        "rawPathsStored",
+        "rawTokensStored",
+        "rawSecretsStored",
+        "rawCommandJsonStored",
+        "rawPolicyJsonStored",
+        "rawCapabilityJsonStored",
+        "rawAgentIdentifiersStored"
+      ],
+      "properties": {
+        "rawRequestIdsStored": {
+          "const": false
+        },
+        "rawDeviceIdsStored": {
+          "const": false
+        },
+        "rawServiceIdsStored": {
+          "const": false
+        },
+        "rawPolicyIdsStored": {
+          "const": false
+        },
+        "rawReviewerNamesStored": {
+          "const": false
+        },
+        "rawEmailsStored": {
+          "const": false
+        },
+        "rawReasonsStored": {
+          "const": false
+        },
+        "rawParametersStored": {
+          "const": false
+        },
+        "rawHostsStored": {
+          "const": false
+        },
+        "rawIpsStored": {
+          "const": false
+        },
+        "rawUrlsStored": {
+          "const": false
+        },
+        "rawPathsStored": {
+          "const": false
+        },
+        "rawTokensStored": {
+          "const": false
+        },
+        "rawSecretsStored": {
+          "const": false
+        },
+        "rawCommandJsonStored": {
+          "const": false
+        },
+        "rawPolicyJsonStored": {
+          "const": false
+        },
+        "rawCapabilityJsonStored": {
+          "const": false
+        },
+        "rawAgentIdentifiersStored": {
+          "const": false
+        }
+      }
+    }
+  }
+}
