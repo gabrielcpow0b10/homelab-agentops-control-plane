@@ -1,162 +1,252 @@
-# HomeLab Control Plane
+# HomeLab AgentOps Control Plane
 
-HomeLab Control Plane is a public, sanitized prototype for documenting and organizing a HomeLab-style control plane. It demonstrates local-first inventory modeling, safe summaries, quality gates, agent command validation, default-deny policy evaluation, redacted audit logging, and redacted approval ledger records without exposing operational HomeLab data.
+A local-first AgentOps control-plane prototype for safe AI-to-agent workflow validation.
 
-This repository is separate from `halo-local-ai-console` because it is not a user interface. The console can evolve as an application layer, while this repository stays focused on durable control-plane data structures, examples, documentation, and safety checks.
+This public repository is a sanitized portfolio version of the project. It demonstrates command validation, policy evaluation, approval checks, capability matching, read-only simulation, dry-run planning, runbook preview, and handoff packet rendering without controlling real infrastructure.
 
-This public repository is not the private operational HomeLab deployment. It contains fake examples, schemas, scripts, and documentation only.
+It contains fake examples, schemas, scripts, and documentation only. It is not the private operational HomeLab deployment.
 
-## Public Safety Boundary
+## What This Proves
 
-This repository is designed to be public-safe:
+- AI-originated requests can be reduced to a strict command contract before any agent layer exists.
+- Default-deny policy checks can happen before approval, capability matching, simulation, or handoff.
+- Approval state, audit records, and handoff packets can be represented with redacted hashes, counts, classifications, and booleans only.
+- A local-first workflow can validate architecture, safety boundaries, and operator review steps without network contact or real execution.
+- Public examples can show the engineering model without exposing real HomeLab inventory, hosts, IPs, policies, logs, credentials, or runtime artifacts.
 
-- No real inventory is included.
-- No real policies are included.
-- No runtime logs are included.
-- No real device names, hosts, IPs, private paths, URLs, tokens, or secrets are included.
-- Examples are fake, generic, and safe for portfolio review.
-- Ignored local runtime directories are documented only as patterns for a private deployment.
+## Current Pipeline
 
-See `docs/PUBLIC_SAFETY_BOUNDARY.md` for the full public safety boundary.
+```text
+AI request
+  -> Command Contract
+  -> Policy Engine
+  -> Approval Ledger
+  -> Capability Registry
+  -> Read-only Simulator
+  -> Dry-Run Plan
+  -> Runbook Preview
+  -> Handoff Packet
+  -> No execution in public repo
+```
 
-## Technical Architecture
+| Layer | Purpose | Public-safe output |
+| --- | --- | --- |
+| Command Contract | Validate allowed request shape and action | PASS/FAIL contract report |
+| Policy Engine | Apply default-deny policy before execution | Redacted policy decision |
+| Approval Ledger | Record approval state for gated requests | Redacted approval event |
+| Capability Registry | Match request to generic future agent class | Capability summary |
+| Read-only Simulator | Combine contract, policy, approval, and capability checks | Simulated final decision |
+| Dry-Run Plan | Render human-readable operational steps | Redacted dry-run plan |
+| Runbook Preview | Render operator review sections | Public-safe runbook preview |
+| Handoff Packet | Prepare final review or future-agent handoff | Public-safe handoff packet |
 
-- Inventory: sanitized device and service examples with JSON schemas.
-- Safe Summary: redacted, count-based inventory reporting.
-- Inventory Quality Gate: PASS, WARN, and FAIL checks for inventory hygiene.
-- Agent Command Contract: allowlisted command request validation for future agents.
-- Agent Policy Engine: default-deny policy evaluation before any execution layer.
-- Agent Audit Log: redacted audit events with hashes and classifications only.
-- Agent Approval Ledger: redacted approval decisions for future gated execution workflows.
-- Agent Capability Registry: generic future agent class capabilities with no real deployment details.
-- Read-only Agent Simulator: end-to-end local decision simulation without execution, network contact, or agent contact.
-- Agent Dry-Run Plan Renderer: human-readable operational plans from read-only simulation results without execution.
-- Agent Runbook Preview: public-safe operational runbook previews from dry-run plans without execution.
-- Agent Handoff Packet: final public-safe handoff packets from runbook previews without execution.
+## Safety Boundary
+
+| Boundary | Public repository rule |
+| --- | --- |
+| No real execution | Scripts validate, render, or simulate only. |
+| No network contact | Scripts do not call remote services or scan networks. |
+| No agent contact | No script contacts a real or private agent. |
+| No raw HomeLab data | Real inventory, policy, logs, hosts, IPs, paths, URLs, and secrets are excluded. |
+| Local runtime files ignored | Runtime and private directories are ignored for private use only. |
+| Fake examples only | Tracked examples are generic and public-safe. |
+
+See [docs/PUBLIC_SAFETY_BOUNDARY.md](docs/PUBLIC_SAFETY_BOUNDARY.md) for the full boundary.
+
+## Milestone Index
+
+| Milestone | Release | What it proves | Reference |
+| --- | --- | --- | --- |
+| v0.2 | Local Inventory Runtime | Local-only inventory can be initialized and validated outside public data. | [docs/V0_2_LOCAL_INVENTORY_RUNTIME.md](docs/V0_2_LOCAL_INVENTORY_RUNTIME.md) |
+| v0.3 | Safe Inventory Summary | Inventory summaries can be redacted and count-based. | [docs/V0_3_SAFE_INVENTORY_SUMMARY.md](docs/V0_3_SAFE_INVENTORY_SUMMARY.md) |
+| v0.4 | Inventory Quality Gate | Inventory hygiene can fail safely before downstream use. | [docs/V0_4_INVENTORY_QUALITY_GATE.md](docs/V0_4_INVENTORY_QUALITY_GATE.md) |
+| v0.5 | Agent Command Contract | AI-to-agent requests can be constrained to an allowlisted schema. | [docs/V0_5_AGENT_COMMAND_CONTRACT.md](docs/V0_5_AGENT_COMMAND_CONTRACT.md) |
+| v0.6 | Agent Policy Engine | Default-deny policy can gate validated requests. | [docs/V0_6_AGENT_POLICY_ENGINE.md](docs/V0_6_AGENT_POLICY_ENGINE.md) |
+| v0.7 | Agent Audit Log | Policy decisions can produce redacted audit events. | [docs/V0_7_AGENT_AUDIT_LOG.md](docs/V0_7_AGENT_AUDIT_LOG.md) |
+| v0.8 | Agent Approval Ledger | Approval outcomes can be recorded without exposing raw request data. | [docs/V0_8_AGENT_APPROVAL_LEDGER.md](docs/V0_8_AGENT_APPROVAL_LEDGER.md) |
+| v0.9 | Agent Capability Registry | Generic future agent capabilities can be validated before simulation. | [docs/V0_9_AGENT_CAPABILITY_REGISTRY.md](docs/V0_9_AGENT_CAPABILITY_REGISTRY.md) |
+| v1.0 | Read-only Agent Simulator | Contract, policy, approval, and capability checks can be combined without execution. | [docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md](docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md) |
+| v1.1 | Agent Dry-Run Plan Renderer | Simulated decisions can become public-safe operator plans. | [docs/V1_1_AGENT_DRY_RUN_PLAN_RENDERER.md](docs/V1_1_AGENT_DRY_RUN_PLAN_RENDERER.md) |
+| v1.2 | Agent Runbook Preview | Dry-run plans can become reviewable runbook sections. | [docs/V1_2_AGENT_RUNBOOK_PREVIEW.md](docs/V1_2_AGENT_RUNBOOK_PREVIEW.md) |
+| v1.3 | Agent Handoff Packet | Runbook previews can become final handoff packets. | [docs/V1_3_AGENT_HANDOFF_PACKET.md](docs/V1_3_AGENT_HANDOFF_PACKET.md) |
+| v1.3.1 | Public README + Release Index Polish | Public presentation can explain the project quickly without new runtime behavior. | [docs/RELEASE_INDEX.md](docs/RELEASE_INDEX.md) |
+
+For a fuller layer-by-layer view, see [docs/RELEASE_INDEX.md](docs/RELEASE_INDEX.md).
+
+## Quick Validation
+
+```bash
+bash scripts/doctor.sh
+bash scripts/security-scan.sh
+```
 
 ## Portfolio Value
 
-This project demonstrates:
+This repository is useful as a public engineering artifact because it shows:
 
-- Local-first architecture for HomeLab control-plane data.
-- Safe AI-to-agent command validation.
-- Default-deny policy evaluation.
-- Redacted audit logging.
-- Redacted approval decision records.
-- Public-safe capability registry validation.
-- End-to-end read-only agent simulation.
-- Redacted dry-run operational plan rendering.
-- Public-safe agent runbook preview rendering.
-- Public-safe agent handoff packet preparation.
-- Bash and Python standard-library tooling.
-- Security scanning and doctor checks for public-safe repository hygiene.
+- local-first architecture;
+- security boundaries for public-safe examples;
+- policy validation before execution;
+- approval workflow modeling;
+- redacted audit trail generation;
+- dry-run planning from simulated decisions;
+- runbook preview rendering;
+- handoff packet preparation for future private review or agent layers.
 
-## v0.1 Scope
+## Local Commands
 
-- Sanitized device inventory examples.
-- Sanitized service inventory examples.
-- Runbook reference examples.
-- JSON schemas for devices and services.
-- Security boundaries and documentation rules.
-- Local validation scripts for syntax checks and conservative secret-pattern scanning.
+Initialize ignored local inventory files:
 
-## v0.2-local Scope
+```bash
+bash scripts/init-local-inventory.sh
+```
 
-- Ignored local inventory runtime under `inventory/`.
-- Sanitized local inventory templates in `examples/`.
-- `scripts/init-local-inventory.sh` for creating local inventory files without overwriting existing files.
-- `scripts/validate-inventory.py` for standard-library validation of local device and service JSON.
-- Doctor integration for inventory validation, script syntax checks, security scanning, and repository status review.
+Validate local inventory:
 
-## v0.3-local Scope
+```bash
+python3 scripts/validate-inventory.py
+```
 
-- Safe local inventory summary generation.
-- Redacted count-based reporting from ignored local inventory files.
-- Optional ignored runtime report at `runtime/inventory-summary.local.md`.
-- `scripts/report-inventory.sh` for validating inventory and writing the safe local report.
-- Doctor integration for summary script syntax and no-write summary checks.
+Print a safe inventory summary without writing a report:
 
-## v0.4-local Scope
+```bash
+python3 scripts/summarize-inventory.py
+```
 
-- Safe local inventory quality gate with PASS, WARN, and FAIL results.
-- Redacted quality checks for duplicate IDs, missing service owners, unknown statuses, and missing device runbooks.
-- Optional ignored runtime report at `runtime/inventory-quality.local.md`.
-- `scripts/check-inventory-quality.sh` for validation plus ignored quality report generation.
-- Doctor integration for quality gate syntax and no-write quality checks.
+Validate inventory and write the ignored local report:
 
-## v0.5-local Scope
+```bash
+bash scripts/report-inventory.sh
+```
 
-- Safe JSON Agent Command Contract for future HomeLab agents.
-- Allowlisted actions only, with blocked arbitrary shell and sensitive access actions.
-- Redacted contract validation reports with count-based PASS and FAIL output.
-- Approval-required rules for future write actions.
-- Optional ignored runtime report at `runtime/agent-command-contract.local.md`.
-- Doctor integration for command contract syntax and no-write validation.
+Run the safe inventory quality gate without writing a report:
 
-## v0.6-local Scope
+```bash
+python3 scripts/check-inventory-quality.py
+```
 
-- Safe local Agent Policy Engine for default-deny policy evaluation.
-- Redacted policy reports that never execute commands or contact agents.
-- Optional ignored runtime report at `runtime/agent-policy-evaluation.local.md`.
-- Doctor integration for policy engine syntax and no-write evaluation.
+Validate inventory and write the ignored quality report:
 
-## v0.7-local Scope
+```bash
+bash scripts/check-inventory-quality.sh
+```
 
-- Safe local Agent Audit Log for redacted policy evaluation events.
-- SHA-256 based short hashes for request, target, policy, command, and policy references.
-- Runtime audit JSONL and Markdown summary output only when explicitly requested.
-- Ignored runtime audit files under `runtime/`.
-- Doctor integration for audit script syntax and no-write audit generation.
+Validate the safe agent command examples without writing a report:
 
-## v0.8-local Scope
+```bash
+python3 scripts/validate-agent-command.py
+```
 
-- Safe local Agent Approval Ledger for redacted human/operator approval decisions.
-- Approval decisions for `approved`, `denied`, and `expired` outcomes.
-- Authorization rules that keep denied policy results, denied approvals, and expired approvals from authorizing execution.
-- Runtime approval JSONL and Markdown summary output only when explicitly requested.
-- Ignored runtime approval files under `runtime/`.
-- Doctor integration for approval script syntax and no-write approval generation.
+Validate the safe agent command examples and write the ignored command contract report:
 
-## v0.9-local Scope
+```bash
+bash scripts/check-agent-command.sh
+```
 
-- Safe local Agent Capability Registry for generic future agent classes.
-- Public-safe capability examples for Raspberry Pi, Mac mini, and Linux worker classes.
-- Validation that checks supported action, mode, risk level, denied actions, and approval-required capability flags.
-- Optional ignored runtime report at `runtime/agent-capability-summary.local.md`.
-- Doctor integration for capability registry syntax and no-write validation.
+Evaluate the safe example command against the safe local policy without writing a report:
 
-## v1.0-local Scope
+```bash
+python3 scripts/evaluate-agent-policy.py
+```
 
-- First end-to-end read-only simulator milestone.
-- Safe local simulation of command contract, policy, approval, and capability decisions.
-- Final simulated decisions: `SIMULATED_READY`, `SIMULATED_BLOCKED`, and `SIMULATED_REQUIRES_APPROVAL`.
-- Redacted result JSON with fingerprints, classifications, counts, and safety booleans only.
-- Optional ignored runtime outputs at `runtime/agent-simulation-result.local.json` and `runtime/agent-simulation-summary.local.md`.
-- Doctor integration for simulator syntax and no-write default simulation.
+Validate the safe policy flow and write the ignored policy report:
 
-## v1.1-local Scope
+```bash
+bash scripts/check-agent-policy.sh
+```
 
-- Safe local Agent Dry-Run Plan Renderer built on the v1.0 read-only simulator.
-- Human-readable plan steps for command validation, policy evaluation, approval check, capability match, simulation decision, and dry-run result.
-- Redacted plan JSON with fingerprints, classifications, counts, step statuses, and safety booleans only.
-- Optional ignored runtime outputs at `runtime/agent-dry-run-plan.local.json` and `runtime/agent-dry-run-plan-summary.local.md`.
-- Doctor integration for renderer syntax and no-write default rendering.
+Generate a safe redacted agent audit event without writing runtime files:
 
-## v1.2-local Scope
+```bash
+python3 scripts/record-agent-audit.py
+```
 
-- Safe local Agent Runbook Preview built on the v1.1 dry-run plan renderer.
-- Human-readable runbook sections for operator review, command safety, policy decision, approval state, capability match, dry-run plan, execution boundary, and final preview status.
-- Redacted preview JSON with dry-run plan fingerprint, classifications, counts, section statuses, and safety booleans only.
-- Optional ignored runtime outputs at `runtime/agent-runbook-preview.local.json` and `runtime/agent-runbook-preview-summary.local.md`.
-- Doctor integration for preview syntax and no-write default rendering.
+Validate the safe audit flow and write ignored audit runtime files:
 
-## v1.3-local Scope
+```bash
+bash scripts/check-agent-audit.sh
+```
 
-- Safe local Agent Handoff Packet built on the v1.2 runbook preview renderer.
-- Generic handoff checklist for command contract, policy decision, approval state, capability match, simulation result, dry-run plan, runbook preview, execution boundary, and handoff decision.
-- Redacted packet JSON with runbook preview fingerprint, classifications, counts, checklist statuses, next actor type, and safety booleans only.
-- Optional ignored runtime outputs at `runtime/agent-handoff-packet.local.json` and `runtime/agent-handoff-packet-summary.local.md`.
-- Doctor integration for handoff packet syntax and no-write default rendering.
+Generate a safe redacted agent approval event without writing runtime files:
+
+```bash
+python3 scripts/record-agent-approval.py
+```
+
+Validate the safe approval flow and write ignored approval runtime files:
+
+```bash
+bash scripts/check-agent-approval.sh
+```
+
+Validate the safe capability registry without writing a report:
+
+```bash
+python3 scripts/validate-agent-capability.py
+```
+
+Validate the safe capability flow and write the ignored capability summary:
+
+```bash
+bash scripts/check-agent-capability.sh
+```
+
+Run the end-to-end read-only agent simulator without writing runtime files:
+
+```bash
+python3 scripts/simulate-readonly-agent.py
+```
+
+Validate the safe simulator flow and write ignored runtime simulation outputs:
+
+```bash
+bash scripts/check-readonly-agent-simulator.sh
+```
+
+Render a safe dry-run operational plan without writing runtime files:
+
+```bash
+python3 scripts/render-dry-run-plan.py
+```
+
+Validate the dry-run plan renderer and write ignored runtime dry-run outputs:
+
+```bash
+bash scripts/check-dry-run-plan.sh
+```
+
+Render a safe public runbook preview without writing runtime files:
+
+```bash
+python3 scripts/render-runbook-preview.py
+```
+
+Validate the runbook preview renderer and write ignored runtime preview outputs:
+
+```bash
+bash scripts/check-runbook-preview.sh
+```
+
+Render a safe public handoff packet without writing runtime files:
+
+```bash
+python3 scripts/render-handoff-packet.py
+```
+
+Validate the handoff packet renderer and write ignored runtime packet outputs:
+
+```bash
+bash scripts/check-handoff-packet.sh
+```
+
+## Documentation
+
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- [docs/PUBLIC_SAFETY_BOUNDARY.md](docs/PUBLIC_SAFETY_BOUNDARY.md)
+- [docs/SECURITY_BOUNDARIES.md](docs/SECURITY_BOUNDARIES.md)
+- [docs/RELEASE_INDEX.md](docs/RELEASE_INDEX.md)
+
+Release screenshots can be kept outside the repository for portfolio posts.
 
 ## Intentionally Not Included
 
@@ -174,232 +264,6 @@ This project demonstrates:
 - Network scanning.
 - Remote automation.
 
-## Local-First Design
-
-The prototype should be useful without depending on external services. Public repository files should contain only documentation, schemas, scripts, and fake examples. In a private operational deployment, real inventory would belong in ignored local directories such as `private/`, `local/`, `inventory/`, `runtime/`, or `secrets/`.
-
-To initialize ignored local inventory files, run:
-
-```bash
-bash scripts/init-local-inventory.sh
-```
-
-To validate local inventory at any time, run:
-
-```bash
-python3 scripts/validate-inventory.py
-```
-
-To print a safe inventory summary without writing a report, run:
-
-```bash
-python3 scripts/summarize-inventory.py
-```
-
-To validate inventory and write the ignored local report, run:
-
-```bash
-bash scripts/report-inventory.sh
-```
-
-To run the safe inventory quality gate without writing a report, run:
-
-```bash
-python3 scripts/check-inventory-quality.py
-```
-
-To validate inventory and write the ignored quality report, run:
-
-```bash
-bash scripts/check-inventory-quality.sh
-```
-
-To validate the safe agent command examples without writing a report, run:
-
-```bash
-python3 scripts/validate-agent-command.py
-```
-
-To validate the safe agent command examples and write the ignored command contract report, run:
-
-```bash
-bash scripts/check-agent-command.sh
-```
-
-To evaluate the safe example command against the safe local policy without writing a report, run:
-
-```bash
-python3 scripts/evaluate-agent-policy.py
-```
-
-To validate the safe policy flow and write the ignored policy report, run:
-
-```bash
-bash scripts/check-agent-policy.sh
-```
-
-To generate a safe redacted agent audit event without writing runtime files, run:
-
-```bash
-python3 scripts/record-agent-audit.py
-```
-
-To validate the safe audit flow and write ignored audit runtime files, run:
-
-```bash
-bash scripts/check-agent-audit.sh
-```
-
-To generate a safe redacted agent approval event without writing runtime files, run:
-
-```bash
-python3 scripts/record-agent-approval.py
-```
-
-To validate the safe approval flow and write ignored approval runtime files, run:
-
-```bash
-bash scripts/check-agent-approval.sh
-```
-
-To validate the safe capability registry without writing a report, run:
-
-```bash
-python3 scripts/validate-agent-capability.py
-```
-
-To validate the safe capability flow and write the ignored capability summary, run:
-
-```bash
-bash scripts/check-agent-capability.sh
-```
-
-To run the end-to-end read-only agent simulator without writing runtime files, run:
-
-```bash
-python3 scripts/simulate-readonly-agent.py
-```
-
-To run the simulator with explicit safe examples, run:
-
-```bash
-python3 scripts/simulate-readonly-agent.py \
-  examples/agent-capability.local.example.json \
-  examples/agent-policy.local.example.json \
-  examples/agent-command.health-check.example.json
-```
-
-To simulate an approval-required command with an approved decision, run:
-
-```bash
-python3 scripts/simulate-readonly-agent.py \
-  examples/agent-capability.local.example.json \
-  examples/agent-policy.local.example.json \
-  examples/agent-command.restart-service.requires-approval.example.json \
-  --approval-decision approved
-```
-
-To validate the safe simulator flow and write ignored runtime simulation outputs, run:
-
-```bash
-bash scripts/check-readonly-agent-simulator.sh
-```
-
-To render a safe dry-run operational plan without writing runtime files, run:
-
-```bash
-python3 scripts/render-dry-run-plan.py
-```
-
-To render a dry-run plan with explicit safe examples, run:
-
-```bash
-python3 scripts/render-dry-run-plan.py \
-  examples/agent-capability.local.example.json \
-  examples/agent-policy.local.example.json \
-  examples/agent-command.health-check.example.json
-```
-
-To render an approval-required dry-run plan with an approved decision, run:
-
-```bash
-python3 scripts/render-dry-run-plan.py \
-  examples/agent-capability.local.example.json \
-  examples/agent-policy.local.example.json \
-  examples/agent-command.restart-service.requires-approval.example.json \
-  --approval-decision approved
-```
-
-To validate the dry-run plan renderer and write ignored runtime dry-run outputs, run:
-
-```bash
-bash scripts/check-dry-run-plan.sh
-```
-
-To render a safe public runbook preview without writing runtime files, run:
-
-```bash
-python3 scripts/render-runbook-preview.py
-```
-
-To render a runbook preview with explicit safe examples, run:
-
-```bash
-python3 scripts/render-runbook-preview.py \
-  examples/agent-capability.local.example.json \
-  examples/agent-policy.local.example.json \
-  examples/agent-command.health-check.example.json
-```
-
-To render an approval-required runbook preview with an approved decision, run:
-
-```bash
-python3 scripts/render-runbook-preview.py \
-  examples/agent-capability.local.example.json \
-  examples/agent-policy.local.example.json \
-  examples/agent-command.restart-service.requires-approval.example.json \
-  --approval-decision approved
-```
-
-To validate the runbook preview renderer and write ignored runtime preview outputs, run:
-
-```bash
-bash scripts/check-runbook-preview.sh
-```
-
-To render a safe public handoff packet without writing runtime files, run:
-
-```bash
-python3 scripts/render-handoff-packet.py
-```
-
-To render a handoff packet with explicit safe examples, run:
-
-```bash
-python3 scripts/render-handoff-packet.py \
-  examples/agent-capability.local.example.json \
-  examples/agent-policy.local.example.json \
-  examples/agent-command.health-check.example.json
-```
-
-To render an approval-required handoff packet with an approved decision, run:
-
-```bash
-python3 scripts/render-handoff-packet.py \
-  examples/agent-capability.local.example.json \
-  examples/agent-policy.local.example.json \
-  examples/agent-command.restart-service.requires-approval.example.json \
-  --approval-decision approved
-```
-
-To validate the handoff packet renderer and write ignored runtime packet outputs, run:
-
-```bash
-bash scripts/check-handoff-packet.sh
-```
-
-See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md`, `docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md`, `docs/V1_1_AGENT_DRY_RUN_PLAN_RENDERER.md`, `docs/V1_2_AGENT_RUNBOOK_PREVIEW.md`, and `docs/V1_3_AGENT_HANDOFF_PACKET.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, read-only simulation behavior, dry-run plan rendering behavior, runbook preview behavior, handoff packet behavior, and limitations.
-
 ## No Secrets Policy
 
 Do not commit secrets or sensitive operational data. Public examples must be fake and sanitized. Treat this repository as shareable by default.
@@ -407,94 +271,3 @@ Do not commit secrets or sensitive operational data. Public examples must be fak
 ## Future Console Integration
 
 Future versions may expose the sanitized schemas and local data layout to HALO Console as a read-only source of fake inventory, services, and runbook metadata. A private operational deployment would keep any real data outside this public repository.
-
-## v0.6-local Agent Policy Engine
-
-v0.6-local adds a safe local Agent Policy Engine. It evaluates validated Agent Command Contract requests against local default-deny policy rules before any future agent execution layer exists.
-
-The engine never executes commands, contacts agents, or calls network services. Normal output is redacted and count-based.
-
-```bash
-python3 scripts/evaluate-agent-policy.py
-bash scripts/check-agent-policy.sh
-```
-
-## v0.7-local Agent Audit Log
-
-v0.7-local adds a safe local Agent Audit Log. It records one redacted policy evaluation event with hashes and classifications only.
-
-The audit script never executes commands, contacts agents, or calls network services. Default mode does not write runtime files.
-
-```bash
-python3 scripts/record-agent-audit.py
-bash scripts/check-agent-audit.sh
-```
-
-## v0.8-local Agent Approval Ledger
-
-v0.8-local adds a safe local Agent Approval Ledger. It records a redacted approval decision after command validation and policy evaluation, using hashes and classifications only.
-
-The approval script never executes commands, contacts agents, or calls network services. Default mode does not write runtime files.
-
-```bash
-python3 scripts/record-agent-approval.py
-bash scripts/check-agent-approval.sh
-```
-
-## v0.9-local Agent Capability Registry
-
-v0.9-local adds a safe local Agent Capability Registry. It validates generic future agent classes and checks whether a validated command action has a matching enabled capability.
-
-The capability script never executes commands, contacts agents, or calls network services. Default mode does not write runtime files.
-
-```bash
-python3 scripts/validate-agent-capability.py
-bash scripts/check-agent-capability.sh
-```
-
-## v1.0-local Read-only Agent Simulator
-
-v1.0-local adds the first end-to-end read-only simulator milestone. It validates the command contract, evaluates policy, checks approval requirements, checks capabilities, and produces a redacted final simulated decision.
-
-The simulator never executes commands, contacts agents, or calls network services. Default mode does not write runtime files.
-
-```bash
-python3 scripts/simulate-readonly-agent.py
-bash scripts/check-readonly-agent-simulator.sh
-```
-
-## v1.1-local Agent Dry-Run Plan Renderer
-
-v1.1-local builds on v1.0 by turning the simulation decision into a human-readable dry-run plan. It shows what would happen in safe, generic steps without executing commands, contacting agents, contacting network services, or storing raw operational data.
-
-Default mode does not write runtime files. Explicit write flags create ignored local dry-run outputs only.
-
-```bash
-python3 scripts/render-dry-run-plan.py
-python3 scripts/render-dry-run-plan.py --write-runtime-plan --write-runtime-summary
-bash scripts/check-dry-run-plan.sh
-```
-
-## v1.2-local Public Agent Runbook Preview
-
-v1.2-local builds on v1.1 by turning the dry-run plan into a readable public-safe runbook preview. It shows what the operator would review, what remains blocked, which safety checks must pass, and what is never executed.
-
-Default mode does not write runtime files. Explicit write flags create ignored local runbook preview outputs only.
-
-```bash
-python3 scripts/render-runbook-preview.py
-python3 scripts/render-runbook-preview.py --write-runtime-preview --write-runtime-summary
-bash scripts/check-runbook-preview.sh
-```
-
-## v1.3-local Agent Handoff Packet
-
-v1.3-local builds on v1.2 by turning the runbook preview into a final public-safe handoff packet. It shows whether a future private agent layer or human reviewer should act next, while keeping raw operational data out of the repository.
-
-Default mode does not write runtime files. Explicit write flags create ignored local handoff packet outputs only.
-
-```bash
-python3 scripts/render-handoff-packet.py
-python3 scripts/render-handoff-packet.py --write-runtime-packet --write-runtime-summary
-bash scripts/check-handoff-packet.sh
-```

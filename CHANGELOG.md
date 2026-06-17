@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.1-local - Public README + Release Index Polish
+
+- Polished the public README so visitors can quickly understand the project purpose, current pipeline, safety boundary, release map, validation commands, and portfolio value.
+- Added a Markdown-safe pipeline diagram from AI request through handoff packet, ending with no execution in the public repository.
+- Added `docs/RELEASE_INDEX.md` with a public-safe milestone table covering layers, what each milestone proves, safety boundaries, and command or documentation references.
+- Clarified the public safety presentation without adding runtime capabilities, dependencies, screenshots, private data, agent contact, network contact, or execution behavior.
+
 ## 1.3.0-local - Agent Handoff Packet
 
 - Added a safe Agent Handoff Packet renderer that turns the v1.2 runbook preview into a final public-safe handoff artifact.
