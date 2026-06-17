@@ -48,6 +48,8 @@ runtime/agent-dry-run-plan.local.json
 runtime/agent-dry-run-plan-summary.local.md
 runtime/agent-runbook-preview.local.json
 runtime/agent-runbook-preview-summary.local.md
+runtime/agent-handoff-packet.local.json
+runtime/agent-handoff-packet-summary.local.md
 audit/*.local.jsonl
 audit/*.private.jsonl
 approvals/*.local.jsonl
@@ -58,3 +60,5 @@ dry-runs/*.local.json
 dry-runs/*.private.json
 runbooks/*.local.json
 runbooks/*.private.json
+handoffs/*.local.json
+handoffs/*.private.json

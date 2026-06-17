@@ -22,6 +22,7 @@ bash -n scripts/check-agent-capability.sh
 bash -n scripts/check-readonly-agent-simulator.sh
 bash -n scripts/check-dry-run-plan.sh
 bash -n scripts/check-runbook-preview.sh
+bash -n scripts/check-handoff-packet.sh
 
 echo "doctor: python syntax"
 python3 -m py_compile scripts/validate-inventory.py
@@ -35,6 +36,7 @@ python3 -m py_compile scripts/validate-agent-capability.py
 python3 -m py_compile scripts/simulate-readonly-agent.py
 python3 -m py_compile scripts/render-dry-run-plan.py
 python3 -m py_compile scripts/render-runbook-preview.py
+python3 -m py_compile scripts/render-handoff-packet.py
 
 echo "doctor: local inventory validation"
 python3 scripts/validate-inventory.py
@@ -68,6 +70,9 @@ python3 scripts/render-dry-run-plan.py
 
 echo "doctor: agent runbook preview"
 python3 scripts/render-runbook-preview.py
+
+echo "doctor: agent handoff packet"
+python3 scripts/render-handoff-packet.py
 
 echo "doctor: security scan"
 bash scripts/security-scan.sh

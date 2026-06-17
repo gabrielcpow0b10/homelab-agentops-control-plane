@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.3",
+  "resultType": "agent_handoff_packet",
+  "packetId": "handoff_6a7b8c9d0e1f2345",
+  "createdAt": "2026-06-17T00:00:00Z",
+  "runbookPreviewFingerprint": "7c9e2a4d6f8b1035",
+  "finalSimulationResult": "SIMULATED_READY",
+  "planStatus": "PLAN_READY",
+  "runbookStatus": "RUNBOOK_PREVIEW_READY",
+  "handoffStatus": "HANDOFF_READY",
+  "handoffMode": "read_only",
+  "riskLevel": "low",
+  "approvalRequired": false,
+  "approvalDecision": "none",
+  "matchedCapabilityCount": 1,
+  "nextActorType": "private_agent_layer",
+  "validationErrorCount": 0,
+  "sensitiveInputBlocked": false,
+  "handoffChecklist": [
+    {
+      "itemNumber": 1,
+      "itemName": "Command Contract Confirmed",
+      "itemStatus": "READY",
+      "itemSummary": "The command contract result is represented as a safe classification.",
+      "reviewerNote": "Confirm that the request remains within the validated public-safe contract.",
+      "safetyNote": "Raw command JSON, request identifiers, targets, parameters, paths, URLs, hosts, IPs, tokens, and secrets are omitted."
+    },
+    {
+      "itemNumber": 2,
+      "itemName": "Policy Decision Confirmed",
+      "itemStatus": "READY",
+      "itemSummary": "The policy decision is carried forward only as ready, blocked, or approval-gated state.",
+      "reviewerNote": "Confirm that denied or unknown policy decisions stay blocked before handoff.",
+      "safetyNote": "Raw policy content, policy identifiers, and policy rationale are omitted."
+    },
+    {
+      "itemNumber": 3,
+      "itemName": "Approval State Confirmed",
+      "itemStatus": "INFO",
+      "itemSummary": "No approval decision is required for this handoff packet.",
+      "reviewerNote": "Confirm approval state before any future private handoff attempts readiness.",
+      "safetyNote": "Reviewer identities, reason text, approval ledger details, and request details are omitted."
+    },
+    {
+      "itemNumber": 4,
+      "itemName": "Capability Match Confirmed",
+      "itemStatus": "READY",
+      "itemSummary": "The capability registry result is reduced to a safe matched capability count.",
+      "reviewerNote": "Confirm at least one compatible capability exists before handoff readiness.",
+      "safetyNote": "Raw capability content and agent identifiers are omitted."
+    },
+    {
+      "itemNumber": 5,
+      "itemName": "Simulation Result Confirmed",
+      "itemStatus": "READY",
+      "itemSummary": "The final simulation result was produced without execution, network contact, or agent contact.",
+      "reviewerNote": "Use the simulation classification to decide whether handoff can remain ready.",
+      "safetyNote": "No command was executed and no network service or agent was contacted."
+    },
+    {
+      "itemNumber": 6,
+      "itemName": "Dry-Run Plan Confirmed",
+      "itemStatus": "READY",
+      "itemSummary": "The dry-run plan status is carried forward as a safe handoff classification.",
+      "reviewerNote": "Confirm the plan is ready or explicitly approval-gated before reviewing handoff.",
+      "safetyNote": "Dry-run plan details are represented only by classifications and the runbook fingerprint."
+    },
+    {
+      "itemNumber": 7,
+      "itemName": "Runbook Preview Confirmed",
+      "itemStatus": "READY",
+      "itemSummary": "The runbook preview is referenced by a short fingerprint for public-safe correlation.",
+      "reviewerNote": "Confirm the preview status before any future private agent layer receives a packet.",
+      "safetyNote": "Runbook sections are not expanded with raw command, policy, capability, target, or reviewer data."
+    },
+    {
+      "itemNumber": 8,
+      "itemName": "Execution Boundary Confirmed",
+      "itemStatus": "INFO",
+      "itemSummary": "This handoff packet is a review artifact only and never crosses into execution.",
+      "reviewerNote": "Keep all execution, agent contact, and network contact outside this public milestone.",
+      "safetyNote": "Safety flags confirm no execution, command, network, agent, or mutable operational target was contacted."
+    },
+    {
+      "itemNumber": 9,
+      "itemName": "Handoff Decision",
+      "itemStatus": "READY",
+      "itemSummary": "The handoff packet is ready for a future private agent layer or final reviewer.",
+      "reviewerNote": "Use this final state to decide whether a human reviewer or future private layer should act next.",
+      "safetyNote": "The packet contains only hashes, classifications, counts, checklist statuses, and safety confirmations."
+    }
+  ],
+  "safety": {
+    "executionAttempted": false,
+    "commandExecuted": false,
+    "networkContacted": false,
+    "agentContacted": false,
+    "filesystemMutationAttempted": false,
+    "rawSecretsStored": false,
+    "rawHostsStored": false,
+    "rawIpsStored": false,
+    "rawUrlsStored": false,
+    "rawPathsStored": false
+  },
+  "redaction": {
+    "rawRequestIdsStored": false,
+    "rawDeviceIdsStored": false,
+    "rawServiceIdsStored": false,
+    "rawPolicyIdsStored": false,
+    "rawReviewerIdentitiesStored": false,
+    "rawReviewerNamesStored": false,
+    "rawEmailsStored": false,
+    "rawReasonsStored": false,
+    "rawParametersStored": false,
+    "rawHostsStored": false,
+    "rawIpsStored": false,
+    "rawUrlsStored": false,
+    "rawPathsStored": false,
+    "rawTokensStored": false,
+    "rawSecretsStored": false,
+    "rawCommandJsonStored": false,
+    "rawPolicyJsonStored": false,
+    "rawCapabilityJsonStored": false,
+    "rawAgentIdentifiersStored": false
+  }
+}

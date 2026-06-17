@@ -32,6 +32,7 @@ See `docs/PUBLIC_SAFETY_BOUNDARY.md` for the full public safety boundary.
 - Read-only Agent Simulator: end-to-end local decision simulation without execution, network contact, or agent contact.
 - Agent Dry-Run Plan Renderer: human-readable operational plans from read-only simulation results without execution.
 - Agent Runbook Preview: public-safe operational runbook previews from dry-run plans without execution.
+- Agent Handoff Packet: final public-safe handoff packets from runbook previews without execution.
 
 ## Portfolio Value
 
@@ -46,6 +47,7 @@ This project demonstrates:
 - End-to-end read-only agent simulation.
 - Redacted dry-run operational plan rendering.
 - Public-safe agent runbook preview rendering.
+- Public-safe agent handoff packet preparation.
 - Bash and Python standard-library tooling.
 - Security scanning and doctor checks for public-safe repository hygiene.
 
@@ -147,6 +149,14 @@ This project demonstrates:
 - Redacted preview JSON with dry-run plan fingerprint, classifications, counts, section statuses, and safety booleans only.
 - Optional ignored runtime outputs at `runtime/agent-runbook-preview.local.json` and `runtime/agent-runbook-preview-summary.local.md`.
 - Doctor integration for preview syntax and no-write default rendering.
+
+## v1.3-local Scope
+
+- Safe local Agent Handoff Packet built on the v1.2 runbook preview renderer.
+- Generic handoff checklist for command contract, policy decision, approval state, capability match, simulation result, dry-run plan, runbook preview, execution boundary, and handoff decision.
+- Redacted packet JSON with runbook preview fingerprint, classifications, counts, checklist statuses, next actor type, and safety booleans only.
+- Optional ignored runtime outputs at `runtime/agent-handoff-packet.local.json` and `runtime/agent-handoff-packet-summary.local.md`.
+- Doctor integration for handoff packet syntax and no-write default rendering.
 
 ## Intentionally Not Included
 
@@ -357,7 +367,38 @@ To validate the runbook preview renderer and write ignored runtime preview outpu
 bash scripts/check-runbook-preview.sh
 ```
 
-See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md`, `docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md`, `docs/V1_1_AGENT_DRY_RUN_PLAN_RENDERER.md`, and `docs/V1_2_AGENT_RUNBOOK_PREVIEW.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, read-only simulation behavior, dry-run plan rendering behavior, runbook preview behavior, and limitations.
+To render a safe public handoff packet without writing runtime files, run:
+
+```bash
+python3 scripts/render-handoff-packet.py
+```
+
+To render a handoff packet with explicit safe examples, run:
+
+```bash
+python3 scripts/render-handoff-packet.py \
+  examples/agent-capability.local.example.json \
+  examples/agent-policy.local.example.json \
+  examples/agent-command.health-check.example.json
+```
+
+To render an approval-required handoff packet with an approved decision, run:
+
+```bash
+python3 scripts/render-handoff-packet.py \
+  examples/agent-capability.local.example.json \
+  examples/agent-policy.local.example.json \
+  examples/agent-command.restart-service.requires-approval.example.json \
+  --approval-decision approved
+```
+
+To validate the handoff packet renderer and write ignored runtime packet outputs, run:
+
+```bash
+bash scripts/check-handoff-packet.sh
+```
+
+See `docs/PUBLIC_SAFETY_BOUNDARY.md`, `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, `docs/V0_5_AGENT_COMMAND_CONTRACT.md`, `docs/V0_6_AGENT_POLICY_ENGINE.md`, `docs/V0_7_AGENT_AUDIT_LOG.md`, `docs/V0_8_AGENT_APPROVAL_LEDGER.md`, `docs/V0_9_AGENT_CAPABILITY_REGISTRY.md`, `docs/V1_0_READ_ONLY_AGENT_SIMULATOR.md`, `docs/V1_1_AGENT_DRY_RUN_PLAN_RENDERER.md`, `docs/V1_2_AGENT_RUNBOOK_PREVIEW.md`, and `docs/V1_3_AGENT_HANDOFF_PACKET.md` for the public safety boundary, local runtime rules, reporting rules, quality gate behavior, command contract validation, policy evaluation, audit logging, approval ledger behavior, capability registry validation, read-only simulation behavior, dry-run plan rendering behavior, runbook preview behavior, handoff packet behavior, and limitations.
 
 ## No Secrets Policy
 
@@ -444,4 +485,16 @@ Default mode does not write runtime files. Explicit write flags create ignored l
 python3 scripts/render-runbook-preview.py
 python3 scripts/render-runbook-preview.py --write-runtime-preview --write-runtime-summary
 bash scripts/check-runbook-preview.sh
+```
+
+## v1.3-local Agent Handoff Packet
+
+v1.3-local builds on v1.2 by turning the runbook preview into a final public-safe handoff packet. It shows whether a future private agent layer or human reviewer should act next, while keeping raw operational data out of the repository.
+
+Default mode does not write runtime files. Explicit write flags create ignored local handoff packet outputs only.
+
+```bash
+python3 scripts/render-handoff-packet.py
+python3 scripts/render-handoff-packet.py --write-runtime-packet --write-runtime-summary
+bash scripts/check-handoff-packet.sh
 ```

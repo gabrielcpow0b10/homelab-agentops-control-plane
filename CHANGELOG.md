@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0-local - Agent Handoff Packet
+
+- Added a safe Agent Handoff Packet renderer that turns the v1.2 runbook preview into a final public-safe handoff artifact.
+- Added redacted handoff packet schema and sanitized example packet with hashes, classifications, counts, checklist statuses, next actor type, and safety booleans only.
+- Added `scripts/render-handoff-packet.py` with safe defaults, optional approval decisions, optional ignored runtime JSON and Markdown outputs, and no subprocess usage.
+- Added `scripts/check-handoff-packet.sh` and integrated no-write handoff packet rendering into doctor.
+- Added v1.3-local documentation for safety model, full pipeline behavior, rendered fields, omitted fields, runtime outputs, commands, limitations, Raspberry Pi 8GB private agent preparation, and the v1.4 Public Agent Handoff Receipt idea.
+
 ## 1.2.0-local - Public Agent Runbook Preview
 
 - Added a safe Agent Runbook Preview renderer that turns the v1.1 dry-run plan into human-readable public-safe runbook sections.
