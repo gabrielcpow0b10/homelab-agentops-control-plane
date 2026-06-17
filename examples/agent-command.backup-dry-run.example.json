@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "0.5",
+  "requestId": "req_backup_dry_run_example",
+  "targetDeviceId": "device_alpha",
+  "action": "backup_dry_run",
+  "mode": "dry_run",
+  "riskLevel": "medium",
+  "requiresApproval": false,
+  "dryRun": true,
+  "requestedBy": "halo_local",
+  "reason": "Preview backup scope without writing or transferring data.",
+  "createdAt": "2026-06-16T00:00:00Z",
+  "parameters": {
+    "backupProfile": "profile_standard"
+  }
+}

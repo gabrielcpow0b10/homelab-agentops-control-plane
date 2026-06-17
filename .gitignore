@@ -16,6 +16,8 @@ local/
 inventory/
 inventory/*.local.json
 inventory/*.private.json
+commands/*.local.json
+commands/*.private.json
 runtime/
 secrets/
 screenshots/

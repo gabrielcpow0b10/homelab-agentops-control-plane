@@ -14,11 +14,13 @@ bash -n scripts/doctor.sh
 bash -n scripts/init-local-inventory.sh
 bash -n scripts/report-inventory.sh
 bash -n scripts/check-inventory-quality.sh
+bash -n scripts/check-agent-command.sh
 
 echo "doctor: python syntax"
 python3 -m py_compile scripts/validate-inventory.py
 python3 -m py_compile scripts/summarize-inventory.py
 python3 -m py_compile scripts/check-inventory-quality.py
+python3 -m py_compile scripts/validate-agent-command.py
 
 echo "doctor: local inventory validation"
 python3 scripts/validate-inventory.py
@@ -28,6 +30,9 @@ python3 scripts/summarize-inventory.py
 
 echo "doctor: inventory quality gate"
 python3 scripts/check-inventory-quality.py
+
+echo "doctor: agent command contract"
+python3 scripts/validate-agent-command.py
 
 echo "doctor: security scan"
 bash scripts/security-scan.sh

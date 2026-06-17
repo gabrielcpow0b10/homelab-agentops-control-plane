@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/agent-command.schema.json",
+  "title": "HomeLab Agent Command Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "targetDeviceId",
+    "action",
+    "mode",
+    "riskLevel",
+    "requiresApproval",
+    "dryRun",
+    "requestedBy",
+    "reason",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.5"
+    },
+    "requestId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "targetDeviceId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "targetServiceId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "health_check",
+        "disk_status",
+        "memory_status",
+        "temperature_check",
+        "service_status",
+        "backup_dry_run",
+        "backup_run",
+        "security_scan",
+        "log_summary",
+        "restart_allowed_service"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "read_only",
+        "dry_run",
+        "approved_write"
+      ]
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "requiresApproval": {
+      "type": "boolean"
+    },
+    "dryRun": {
+      "type": "boolean"
+    },
+    "requestedBy": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "parameters": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "enum": [
+              "health_check",
+              "disk_status",
+              "memory_status",
+              "temperature_check",
+              "service_status",
+              "security_scan",
+              "log_summary"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "mode": {
+            "const": "read_only"
+          },
+          "dryRun": {
+            "const": true
+          },
+          "requiresApproval": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "const": "backup_dry_run"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "mode": {
+            "const": "dry_run"
+          },
+          "dryRun": {
+            "const": true
+          },
+          "requiresApproval": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "enum": [
+              "backup_run",
+              "restart_allowed_service"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "mode": {
+            "const": "approved_write"
+          },
+          "dryRun": {
+            "const": false
+          },
+          "requiresApproval": {
+            "const": true
+          },
+          "riskLevel": {
+            "const": "high"
+          }
+        }
+      }
+    }
+  ]
+}

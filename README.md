@@ -37,6 +37,15 @@ This repository is separate from `halo-local-ai-console` because it is not a use
 - `scripts/check-inventory-quality.sh` for validation plus ignored quality report generation.
 - Doctor integration for quality gate syntax and no-write quality checks.
 
+## v0.5-local Scope
+
+- Safe JSON Agent Command Contract for future HomeLab agents.
+- Allowlisted actions only, with blocked arbitrary shell and sensitive access actions.
+- Redacted contract validation reports with count-based PASS and FAIL output.
+- Approval-required rules for future write actions.
+- Optional ignored runtime report at `runtime/agent-command-contract.local.md`.
+- Doctor integration for command contract syntax and no-write validation.
+
 ## Intentionally Not Included
 
 - Real device inventory.
@@ -89,7 +98,19 @@ To validate inventory and write the ignored quality report, run:
 bash scripts/check-inventory-quality.sh
 ```
 
-See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, and `docs/V0_4_INVENTORY_QUALITY_GATE.md` for the local runtime rules, reporting rules, quality gate behavior, and limitations.
+To validate the safe agent command examples without writing a report, run:
+
+```bash
+python3 scripts/validate-agent-command.py
+```
+
+To validate the safe agent command examples and write the ignored command contract report, run:
+
+```bash
+bash scripts/check-agent-command.sh
+```
+
+See `docs/V0_2_LOCAL_INVENTORY_RUNTIME.md`, `docs/V0_3_SAFE_INVENTORY_SUMMARY.md`, `docs/V0_4_INVENTORY_QUALITY_GATE.md`, and `docs/V0_5_AGENT_COMMAND_CONTRACT.md` for the local runtime rules, reporting rules, quality gate behavior, command contract validation, and limitations.
 
 ## No Secrets Policy
 

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.5",
+  "requestId": "req_health_check_example",
+  "targetDeviceId": "device_alpha",
+  "action": "health_check",
+  "mode": "read_only",
+  "riskLevel": "low",
+  "requiresApproval": false,
+  "dryRun": true,
+  "requestedBy": "halo_local",
+  "reason": "Confirm basic agent availability using a read only check.",
+  "createdAt": "2026-06-16T00:00:00Z",
+  "parameters": {}
+}

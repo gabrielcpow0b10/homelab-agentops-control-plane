@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "0.5",
+  "requestId": "req_restart_service_example",
+  "targetDeviceId": "device_alpha",
+  "targetServiceId": "service_alpha",
+  "action": "restart_allowed_service",
+  "mode": "approved_write",
+  "riskLevel": "high",
+  "requiresApproval": true,
+  "dryRun": false,
+  "requestedBy": "halo_local",
+  "reason": "Request approved restart for a known allowlisted service.",
+  "createdAt": "2026-06-16T00:00:00Z",
+  "parameters": {
+    "serviceName": "service_alpha"
+  }
+}

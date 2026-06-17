@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0-local - Agent Command Contract
+
+- Added a safe JSON Agent Command Contract schema for future HomeLab agent requests.
+- Added sanitized example command requests for read-only, dry-run, and approval-required flows.
+- Added a standard-library validator that rejects blocked actions, unknown actions, unsafe parameters, and sensitive patterns.
+- Added an ignored runtime report helper for redacted command contract validation.
+- Added doctor checks for command contract shell syntax, Python compilation, and no-write validation.
+- Added v0.5-local documentation for the safety model, approval rules, commands, limitations, and the v0.6 Agent Policy Engine idea.
+
 ## 0.4.0-local - Inventory Quality Gate
 
 - Added a redacted local inventory quality gate with PASS, WARN, and FAIL results.
