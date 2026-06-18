@@ -38,11 +38,30 @@ def test_denied_action_explicitly_listed_in_policy_remains_deny() -> None:
 
 def test_read_only_health_check_allows_when_policy_conditions_match() -> None:
     engine = load_script_module("evaluate-agent-policy.py", "test_policy_allow")
+    command = health_command()
+    command_valid, validation_errors, validation_failures = engine.validate_command_with_contract(command)
 
-    result = engine.evaluate(policy(), health_command(), command_valid=True, validation_errors=0)
+    result = engine.evaluate(policy(), command, command_valid, validation_errors)
+    result.validation_failures.extend(validation_failures)
 
     assert result.decision == engine.DECISION_ALLOW
     assert result.approval_required is False
+    assert result.contract_valid is True
+    assert result.validation_error_count == 0
+
+
+def test_invalid_command_fails_contract_and_policy_safely() -> None:
+    engine = load_script_module("evaluate-agent-policy.py", "test_policy_invalid_contract")
+    command = clone(health_command())
+    command["mode"] = "approved_write"
+    command_valid, validation_errors, validation_failures = engine.validate_command_with_contract(command)
+
+    result = engine.evaluate(policy(), command, command_valid, validation_errors)
+    result.validation_failures.extend(validation_failures)
+
+    assert result.decision == engine.DECISION_DENY
+    assert result.contract_valid is False
+    assert result.validation_error_count > 0
 
 
 def test_approval_required_action_returns_allow_with_approval() -> None:
