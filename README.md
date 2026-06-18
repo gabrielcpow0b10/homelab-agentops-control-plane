@@ -1,10 +1,40 @@
 # HomeLab AgentOps Control Plane
 
+[![Python CI](https://github.com/gabrielcpow0b10/homelab-agentops-control-plane/actions/workflows/python-ci.yml/badge.svg)](https://github.com/gabrielcpow0b10/homelab-agentops-control-plane/actions/workflows/python-ci.yml)
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Public-safe prototype](https://img.shields.io/badge/status-public--safe%20prototype-2ea44f.svg)
+![No execution by default](https://img.shields.io/badge/default-no%20execution-8a2be2.svg)
+
 An early public-safe AgentOps control-plane prototype for safe AI-to-agent workflow validation.
 
 This public repository is a sanitized prototype, not a production-ready HomeLab control plane. It demonstrates command validation, policy evaluation, approval checks, capability matching, read-only simulation, dry-run planning, runbook preview, and handoff packet rendering without controlling real infrastructure.
 
 It contains fake examples, schemas, scripts, and documentation only. It is not the private operational HomeLab deployment.
+
+## Repository Status
+
+- Early public-safe prototype.
+- MIT licensed.
+- Tested with pytest.
+- CI validated with GitHub Actions.
+- No real HomeLab infrastructure is controlled by this public repo.
+
+## Review Checklist
+
+- Run `python3 -m pytest`.
+- Run `bash scripts/doctor.sh`.
+- Run `bash scripts/security-scan.sh`.
+- Inspect [docs/PUBLIC_SAFETY_BOUNDARY.md](docs/PUBLIC_SAFETY_BOUNDARY.md).
+- Inspect [tests/](tests/) for default-deny and simulator behavior.
+
+## What Is Intentionally Not Included
+
+- No real inventory.
+- No private runtime data.
+- No SSH targets.
+- No screenshots.
+- No real infrastructure execution path.
+- No production deployment claims.
 
 ## Architecture
 
@@ -258,7 +288,7 @@ bash scripts/check-handoff-packet.sh
 
 Release screenshots can be kept outside the repository for portfolio posts.
 
-## Intentionally Not Included
+## Additional Exclusions
 
 - Real device inventory.
 - Real network addresses.

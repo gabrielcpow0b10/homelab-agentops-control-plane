@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Polished README badges and reviewer checklist.
+- Clarified repository status and intentionally excluded private/runtime components.
+- No runtime capability added.
+
 ## 1.3.2-local - Repository quality and testability polish
 
 - Added the MIT license.
