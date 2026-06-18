@@ -224,7 +224,7 @@ def evaluate_policy(simulation: Simulation, policy: Any, command: Any, command_p
     if not callable(validate_command) or not callable(evaluate):
         simulation.validation_error_count += 1
         return
-    command_valid, command_errors, command_failures = validate_command(command_path, command)
+    command_valid, command_errors, command_failures = validate_command(command)
     evaluation = evaluate(policy, command, command_valid, command_errors)
     simulation.policy_evaluation_result = evaluation.decision if evaluation.decision in POLICY_RESULTS else "UNKNOWN"
     simulation.approval_required = simulation.approval_required or bool(evaluation.approval_required)

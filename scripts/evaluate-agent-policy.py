@@ -181,34 +181,22 @@ def load_contract_validator():
     return module
 
 
-def validate_command_with_contract(command_path: Path, command: Any) -> tuple[bool, int, list[str]]:
+def validate_command_with_contract(command: Any) -> tuple[bool, int, list[str]]:
     try:
         module = load_contract_validator()
     except ValidatorLoadError as exc:
         return False, 1, [str(exc)]
     if module is not None:
-        for name in ("validate_command", "validate_agent_command", "validate_contract"):
-            func = getattr(module, name, None)
-            if callable(func):
-                result = None
-                for args in ((command, 1), (command,), (command_path,)):
-                    try:
-                        result = func(*args)
-                        break
-                    except TypeError:
-                        continue
-                    except Exception:
-                        return False, 1, ["contract validation failed"]
-                else:
-                    return False, 1, ["contract validation failed"]
-                if isinstance(result, tuple):
-                    valid = bool(result[0])
-                    details = result[1] if len(result) > 1 else []
-                    return valid, len(details) if isinstance(details, list) else (0 if valid else 1), []
-                if isinstance(result, list):
-                    return len(result) == 0, len(result), []
-                if isinstance(result, bool):
-                    return result, 0 if result else 1, []
+        validate_command = getattr(module, "validate_command", None)
+        if not callable(validate_command):
+            return False, 1, ["contract validator missing validate_command"]
+        try:
+            errors = validate_command(command, 1)
+        except Exception:
+            return False, 1, ["contract validation failed"]
+        if not isinstance(errors, list):
+            return False, 1, ["contract validation returned invalid result"]
+        return len(errors) == 0, len(errors), []
     valid, error_count = validate_command_shape(command)
     return valid, error_count, []
 
@@ -337,7 +325,7 @@ def main(argv: list[str]) -> int:
         command_path = safe_repo_path(args.command, 2)
         policy = read_json_file(policy_path)
         command = read_json_file(command_path)
-        command_valid, command_error_count, command_failures = validate_command_with_contract(command_path, command)
+        command_valid, command_error_count, command_failures = validate_command_with_contract(command)
         result = evaluate(policy, command, command_valid, command_error_count)
         result.validation_failures.extend(command_failures)
     except ValueError as exc:

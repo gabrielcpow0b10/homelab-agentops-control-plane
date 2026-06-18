@@ -6,6 +6,7 @@
 - Updated CI to require the security scan directly.
 - Polished README badges and reviewer checklist.
 - Clarified repository status and intentionally excluded private/runtime components.
+- Simplified policy engine contract validator wiring to use the single supported validator API.
 - No runtime capability added.
 
 ## 1.3.2-local - Repository quality and testability polish

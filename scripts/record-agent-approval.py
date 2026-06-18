@@ -401,9 +401,7 @@ def run_approval(args: argparse.Namespace) -> ApprovalRun:
         command_path = safe_repo_path(args.command, 2)
         policy = load_json_with_engine(engine, policy_path)
         command = load_json_with_engine(engine, command_path)
-        command_valid, command_error_count, command_failures = engine.validate_command_with_contract(
-            command_path, command
-        )
+        command_valid, command_error_count, command_failures = engine.validate_command_with_contract(command)
         evaluation = engine.evaluate(policy, command, command_valid, command_error_count)
         evaluation.validation_failures.extend(command_failures)
         run.policy_result = evaluation.decision
