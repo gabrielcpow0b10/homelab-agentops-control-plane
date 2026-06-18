@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.2-local - Repository quality and testability polish
+
+- Added the MIT license.
+- Added a pytest test suite for command contract validation, policy default-deny behavior, simulator decisions, and capability matching.
+- Added `pyproject.toml` and `requirements.txt`.
+- Added a Python CI workflow.
+- Refined README wording for early public-safe prototype framing.
+- No new runtime capability added.
+
 ## 1.3.1-local - Public README + Release Index Polish
 
 - Polished the public README so visitors can quickly understand the project purpose, current pipeline, safety boundary, release map, validation commands, and portfolio value.
