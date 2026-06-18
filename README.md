@@ -1,12 +1,12 @@
 # HomeLab AgentOps Control Plane
 
-A local-first AgentOps control-plane prototype for safe AI-to-agent workflow validation.
+An early public-safe AgentOps control-plane prototype for safe AI-to-agent workflow validation.
 
-This public repository is a sanitized portfolio version of the project. It demonstrates command validation, policy evaluation, approval checks, capability matching, read-only simulation, dry-run planning, runbook preview, and handoff packet rendering without controlling real infrastructure.
+This public repository is a sanitized prototype, not a production-ready HomeLab control plane. It demonstrates command validation, policy evaluation, approval checks, capability matching, read-only simulation, dry-run planning, runbook preview, and handoff packet rendering without controlling real infrastructure.
 
 It contains fake examples, schemas, scripts, and documentation only. It is not the private operational HomeLab deployment.
 
-## What This Proves
+## Architecture
 
 - AI-originated requests can be reduced to a strict command contract before any agent layer exists.
 - Default-deny policy checks can happen before approval, capability matching, simulation, or handoff.
@@ -42,6 +42,8 @@ AI request
 
 ## Safety Boundary
 
+The public repository is intentionally read-only and public-safe. It must not contain real HomeLab data, credentials, private runtime files, network targets, or automation that mutates infrastructure.
+
 | Boundary | Public repository rule |
 | --- | --- |
 | No real execution | Scripts validate, render, or simulate only. |
@@ -55,7 +57,7 @@ See [docs/PUBLIC_SAFETY_BOUNDARY.md](docs/PUBLIC_SAFETY_BOUNDARY.md) for the ful
 
 ## Milestone Index
 
-| Milestone | Release | What it proves | Reference |
+| Milestone | Release | Prototype step | Reference |
 | --- | --- | --- | --- |
 | v0.2 | Local Inventory Runtime | Local-only inventory can be initialized and validated outside public data. | [docs/V0_2_LOCAL_INVENTORY_RUNTIME.md](docs/V0_2_LOCAL_INVENTORY_RUNTIME.md) |
 | v0.3 | Safe Inventory Summary | Inventory summaries can be redacted and count-based. | [docs/V0_3_SAFE_INVENTORY_SUMMARY.md](docs/V0_3_SAFE_INVENTORY_SUMMARY.md) |
@@ -73,11 +75,19 @@ See [docs/PUBLIC_SAFETY_BOUNDARY.md](docs/PUBLIC_SAFETY_BOUNDARY.md) for the ful
 
 For a fuller layer-by-layer view, see [docs/RELEASE_INDEX.md](docs/RELEASE_INDEX.md).
 
+Version tags in this repository are local milestone snapshots from the public prototype phase. They are not production-readiness claims.
+
 ## Quick Validation
 
 ```bash
 bash scripts/doctor.sh
 bash scripts/security-scan.sh
+```
+
+## Running tests
+
+```bash
+python3 -m pytest
 ```
 
 ## Portfolio Value
