@@ -17,7 +17,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: python3 -m pip install -r requirements.txt
+        run: python3 -m pip install -e ".[test]"
 
       - name: Run pytest
         run: python3 -m pytest
@@ -26,7 +26,4 @@ jobs:
         run: bash scripts/doctor.sh
 
       - name: Run security scan
-        run: |
-          if [ -f scripts/security-scan.sh ]; then
-            bash scripts/security-scan.sh
-          fi
+        run: bash scripts/security-scan.sh

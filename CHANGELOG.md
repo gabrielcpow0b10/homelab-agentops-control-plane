@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Cleaned up Python packaging and moved pytest to the optional `test` dependency.
+- Updated CI to require the security scan directly.
 - Polished README badges and reviewer checklist.
 - Clarified repository status and intentionally excluded private/runtime components.
 - No runtime capability added.
